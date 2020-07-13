@@ -54,7 +54,7 @@ public class JwtToken implements InitializingBean {
     /**
      * 根据负责生成JWT的token
      */
-    private String generateToken(Authentication authentication) {
+    public String generateToken(Authentication authentication) {
         /*
          * 获取权限列表
          */

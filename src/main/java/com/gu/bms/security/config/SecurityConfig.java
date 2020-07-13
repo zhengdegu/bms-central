@@ -1,5 +1,6 @@
 package com.gu.bms.security.config;
 
+import com.gu.bms.security.security.JwtAuthenticationTokenFilter;
 import com.gu.bms.security.security.JwtToken;
 import com.gu.bms.security.security.properties.SecurityProperties;
 import lombok.AllArgsConstructor;
@@ -11,6 +12,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -24,6 +26,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.access.AccessDeniedHandler;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
@@ -48,8 +51,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private RestAuthenticationEntryPoint restAuthenticationEntryPoint;
+
     @Autowired
     private RestfulAccessDeniedHandler restfulAccessDeniedHandler;
+
+    @Autowired
+    private JwtAuthenticationTokenFilter jwtAuthenticationTokenFilter;
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -103,7 +110,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         httpSecurity.exceptionHandling()
                 .authenticationEntryPoint(restAuthenticationEntryPoint)
                 .accessDeniedHandler(restfulAccessDeniedHandler);
+        // 添加JWT filter
+        httpSecurity.addFilterBefore(jwtAuthenticationTokenFilter, UsernamePasswordAuthenticationFilter.class);
     }
+
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.userDetailsService(userDetailsService())
+                .passwordEncoder(passwordEncoder());
+    }
+
 
     @Bean
     @Override
@@ -138,47 +154,4 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         }
     }
 
-    //####################过滤器############################
-    @Slf4j
-    @AllArgsConstructor
-    public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
-        private final JwtToken jwtToken;
-        private final SecurityProperties securityProperties;
-        private final UserDetailsService userDetailsService;
-
-        @Override
-        protected void doFilterInternal(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, FilterChain filterChain) throws ServletException, IOException {
-            HttpServletRequest servletRequest = (HttpServletRequest) httpServletRequest;
-            String token = this.resolveToken(servletRequest);
-            if (org.apache.commons.lang3.StringUtils.isNotEmpty(token)) {
-                String username = jwtToken.getUserNameFromToken(token);
-                    if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
-                        UserDetails userDetails = userDetailsService.loadUserByUsername(username);
-                        UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
-                        authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(httpServletRequest));
-                        SecurityContextHolder.getContext().setAuthentication(authentication);
-                        // Token 续期
-                        jwtToken.checkRenewal(token);
-                }
-            }
-            filterChain.doFilter(httpServletRequest, httpServletResponse);
-        }
-
-        /**
-         * 获取token
-         *
-         * @param request 请求
-         * @return token
-         */
-        private String resolveToken(HttpServletRequest request) {
-            String bearerToken = request.getHeader(securityProperties.getToken().getHeader());
-            if (StringUtils.hasText(bearerToken) && bearerToken.startsWith(securityProperties.getToken().getTokenStartWith())) {
-                // 去掉令牌前缀
-                return bearerToken.replace(securityProperties.getToken().getTokenStartWith(), "");
-            } else {
-                log.debug("非法Token：{}", bearerToken);
-            }
-            return null;
-        }
-    }
 }

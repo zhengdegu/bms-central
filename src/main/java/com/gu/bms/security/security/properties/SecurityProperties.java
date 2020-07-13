@@ -3,6 +3,7 @@ package com.gu.bms.security.security.properties;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 /**
@@ -16,6 +17,14 @@ public class SecurityProperties {
 
     private Token token = new Token();
 
+    private Rsa rsa=new Rsa();
+    @Setter
+    @Getter
+    public class Rsa {
+
+        public  String privateKey;
+
+    }
     @Setter
     @Getter
     public class Token {
