@@ -26,7 +26,11 @@ public class AdminUserDetails implements UserDetails {
     private final List<GrantedAuthority> authorities;
 
     public Set<String> getRoles() {
-        return authorities.stream().map(GrantedAuthority::getAuthority).collect(Collectors.toSet());
+        return authorities
+                .stream()
+               // .filter(authority -> authority.getAuthority() != null)
+                .map(GrantedAuthority::getAuthority)
+                .collect(Collectors.toSet());
     }
 
     @Override
