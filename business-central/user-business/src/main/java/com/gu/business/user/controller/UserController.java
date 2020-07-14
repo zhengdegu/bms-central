@@ -29,7 +29,7 @@ public class UserController {
     private UserService userService;
 
 
-    @ApiOperation(value = "根据用户名查询用户实体")
+    @ApiOperation(value = "根据用户名查询用户")
     @GetMapping(value = "/{username}")
     public ResponseEntity<Object> selectByUsername(@PathVariable String username) {
         UserDto name = userService.findByName(username);
@@ -42,5 +42,12 @@ public class UserController {
         userDto.setPassword(passwordEncoder.encode(CommonConstants.DEF_USER_PASSWORD));
         userService.create(userDto);
         return new ResponseEntity<>(HttpStatus.CREATED);
+    }
+
+    @ApiOperation("修改用户")
+    @PutMapping
+    public ResponseEntity<Object> update(@Validated @RequestBody UserDto userDto){
+       userService.update(userDto);
+       return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }

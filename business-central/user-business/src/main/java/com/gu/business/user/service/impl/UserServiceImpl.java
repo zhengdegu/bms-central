@@ -3,6 +3,7 @@ package com.gu.business.user.service.impl;
 import com.gu.business.user.domain.User;
 import com.gu.business.user.repository.UserRepository;
 import com.gu.business.user.service.UserService;
+import com.gu.business.user.service.mapstruct.RoleMapper;
 import com.gu.business.user.service.mapstruct.UserMapper;
 import com.gu.common.domain.dto.JobSmallDto;
 import com.gu.common.domain.dto.RoleSmallDto;
@@ -33,6 +34,8 @@ public class UserServiceImpl implements UserService {
     private UserRepository userRepository;
     @Resource
     private UserMapper userMapper;
+    @Resource
+    private RoleMapper roleMapper;
 
 
     @Override
@@ -66,37 +69,38 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public void update(User resources) {
-        User user = userRepository.findById(resources.getId()).orElseGet(User::new);
-        User user1 = userRepository.findByUsername(resources.getUsername());
-        User user2 = userRepository.findByEmail(resources.getEmail());
+    public void update(UserDto resources) {
+        User user1 = userRepository.findById(resources.getId()).orElseGet(User::new);
+        User user2 = userRepository.findByUsername(resources.getUsername());
+        User user3 = userRepository.findByEmail(resources.getEmail());
 
-        if (user1 != null && !user.getId().equals(user1.getId())) {
+        if (user2 != null && !user1.getId().equals(user2.getId())) {
             throw new EntityExistException(User.class, "username", resources.getUsername());
         }
 
-        if (user2 != null && !user.getId().equals(user2.getId())) {
+        if (user3 != null && !user1.getId().equals(user3.getId())) {
             throw new EntityExistException(User.class, "email", resources.getEmail());
         }
         // 如果用户的角色改变
-        if (!resources.getRoles().equals(user.getRoles())) {
+        if (!resources.getRoles().equals(user1.getRoles())) {
 
         }
         // 如果用户名称修改
-        if (!resources.getUsername().equals(user.getUsername())) {
+        if (!resources.getUsername().equals(user1.getUsername())) {
 
         }
-        user.setUsername(resources.getUsername());
-        user.setEmail(resources.getEmail());
-        user.setEnabled(resources.getEnabled());
-        user.setRoles(resources.getRoles());
-        user.setDept(resources.getDept());
-        user.setJobs(resources.getJobs());
-        user.setPhone(resources.getPhone());
-        user.setNickName(resources.getNickName());
-        user.setGender(resources.getGender());
+        User user = userMapper.toEntity(resources);
+        user.setUsername(user.getUsername());
+        user.setEmail(user.getEmail());
+        user.setEnabled(user.getEnabled());
+        user.setRoles(user.getRoles());
+        user.setDept(user.getDept());
+        user.setJobs(user.getJobs());
+        user.setPhone(user.getPhone());
+        user.setNickName(user.getNickName());
+        user.setGender(user.getGender());
         userRepository.save(user);
-        // 清除缓存
+
     }
 
     @Override

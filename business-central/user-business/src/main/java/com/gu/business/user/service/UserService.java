@@ -38,7 +38,7 @@ public interface UserService {
      *
      * @param resources /
      */
-    void update(User resources);
+    void update(UserDto resources);
 
     /**
      * 删除用户
