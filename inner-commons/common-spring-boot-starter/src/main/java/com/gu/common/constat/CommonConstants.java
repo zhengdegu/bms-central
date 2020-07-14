@@ -7,6 +7,10 @@ package com.gu.common.constat;
 public interface CommonConstants {
 
     /**
+     * 默认密码
+     */
+    String DEFAULT_PASSWORD = "123456";
+    /**
      * 项目版本号(banner使用)
      */
     String PROJECT_VERSION = "3.6.1";

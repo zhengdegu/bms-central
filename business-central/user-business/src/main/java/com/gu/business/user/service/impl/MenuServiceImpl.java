@@ -4,8 +4,6 @@ import com.gu.business.user.domain.Menu;
 import com.gu.business.user.service.MenuService;
 import com.gu.common.domain.dto.MenuDto;
 import com.gu.common.domain.dto.MenuQueryCriteria;
-import lombok.RequiredArgsConstructor;
-import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletResponse;

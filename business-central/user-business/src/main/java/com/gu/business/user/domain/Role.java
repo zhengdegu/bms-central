@@ -24,8 +24,6 @@ import java.util.Set;
 @Entity
 @Getter
 @Setter
-@ToString
-@EqualsAndHashCode(callSuper = false)
 @Table(name = "sys_role")
 public class Role extends BaseEntity implements Serializable {
 

@@ -4,8 +4,6 @@ import com.gu.business.user.domain.Job;
 import com.gu.business.user.service.JobService;
 import com.gu.common.domain.dto.JobDto;
 import com.gu.common.domain.dto.JobQueryCriteria;
-import lombok.RequiredArgsConstructor;
-import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 

@@ -11,7 +11,6 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
-import java.util.Objects;
 
 /**
  * @author FastG
@@ -21,7 +20,6 @@ import java.util.Objects;
 @Getter
 @Setter
 @ToString
-@EqualsAndHashCode(callSuper = false)
 @Table(name = "sys_job")
 public class Job extends BaseEntity implements Serializable {
 

@@ -5,8 +5,6 @@ import com.gu.business.user.domain.Dept;
 import com.gu.business.user.service.DeptService;
 import com.gu.common.domain.dto.DeptDto;
 import com.gu.common.domain.dto.DeptQueryCriteria;
-import lombok.RequiredArgsConstructor;
-import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletResponse;

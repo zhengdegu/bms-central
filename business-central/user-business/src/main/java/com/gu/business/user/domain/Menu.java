@@ -19,8 +19,6 @@ import java.util.Set;
 @Entity
 @Getter
 @Setter
-@ToString
-@EqualsAndHashCode(callSuper = false)
 @Table(name = "sys_menu")
 public class Menu extends BaseEntity implements Serializable {
 

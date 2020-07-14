@@ -9,10 +9,8 @@ import com.gu.common.domain.dto.RoleSmallDto;
 import com.gu.common.domain.dto.UserDto;
 import com.gu.common.domain.dto.UserQueryCriteria;
 import com.gu.common.exception.EntityExistException;
+import com.gu.common.exception.EntityNotFoundException;
 import com.gu.common.utils.FileUtil;
-import lombok.RequiredArgsConstructor;
-import org.springframework.cache.annotation.CacheConfig;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -32,9 +30,9 @@ import java.util.stream.Collectors;
 public class UserServiceImpl implements UserService {
 
     @Resource
-    private  UserRepository userRepository;
+    private UserRepository userRepository;
     @Resource
-    private  UserMapper userMapper;
+    private UserMapper userMapper;
 
 
     @Override
@@ -56,14 +54,14 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public void create(User resources) {
+    public void create(UserDto resources) {
         if (userRepository.findByUsername(resources.getUsername()) != null) {
             throw new EntityExistException(User.class, "username", resources.getUsername());
         }
         if (userRepository.findByEmail(resources.getEmail()) != null) {
             throw new EntityExistException(User.class, "email", resources.getEmail());
         }
-        userRepository.save(resources);
+        userRepository.save(userMapper.toEntity(resources));
     }
 
     @Override
@@ -127,7 +125,7 @@ public class UserServiceImpl implements UserService {
     public UserDto findByName(String userName) {
         User user = userRepository.findByUsername(userName);
         if (user == null) {
-            return null;
+            throw new EntityNotFoundException(User.class, "name", userName);
         } else {
             return userMapper.toDto(user);
         }

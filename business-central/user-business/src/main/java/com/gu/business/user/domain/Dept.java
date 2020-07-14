@@ -21,7 +21,6 @@ import java.util.Set;
 @Entity
 @Getter
 @Setter
-@ToString
 @EqualsAndHashCode(callSuper = false)
 @Table(name = "sys_dept")
 public class Dept extends BaseEntity implements Serializable {

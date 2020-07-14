@@ -6,8 +6,6 @@ import com.gu.common.domain.dto.RoleDto;
 import com.gu.common.domain.dto.RoleQueryCriteria;
 import com.gu.common.domain.dto.RoleSmallDto;
 import com.gu.common.domain.dto.UserDto;
-import lombok.RequiredArgsConstructor;
-import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Service;
