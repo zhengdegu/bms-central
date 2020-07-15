@@ -105,7 +105,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public void updateCenter(User resources) {
+    public void updateCenter(UserDto resources) {
         User user = userRepository.findById(resources.getId()).orElseGet(User::new);
         user.setNickName(resources.getNickName());
         user.setPhone(resources.getPhone());

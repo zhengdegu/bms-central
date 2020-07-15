@@ -2,10 +2,8 @@ package com.gu.business.user.domain;
 
 import com.gu.common.domain.BaseEntity;
 import io.swagger.annotations.ApiModelProperty;
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
-import lombok.ToString;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;

@@ -1,6 +1,5 @@
 package com.gu.business.user.service;
 
-import com.gu.business.user.domain.User;
 import com.gu.common.domain.dto.UserDto;
 import com.gu.common.domain.dto.UserQueryCriteria;
 import org.springframework.data.domain.Pageable;
@@ -110,5 +109,5 @@ public interface UserService {
      *
      * @param resources /
      */
-    void updateCenter(User resources);
+    void updateCenter(UserDto resources);
 }
