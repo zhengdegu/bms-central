@@ -21,7 +21,7 @@ import java.util.Collections;
 @Service
 public class VerifyServiceImpl implements VerifyService {
 
-    @Value("${code.expiration}")
+   // @Value("${code.expiration}")
     private Long expiration;
 
     @Autowired

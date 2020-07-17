@@ -1,7 +1,6 @@
 package com.gu.common.utils;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.gu.common.model.Result;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -27,8 +26,8 @@ public class ResponseUtil {
      * @throws IOException
      */
     public static void responseWriter(ObjectMapper objectMapper, HttpServletResponse response, String msg, int httpStatus) throws IOException {
-        Result result = Result.of(null, httpStatus, msg);
-        responseWrite(objectMapper, response, result);
+        R error = R.error(httpStatus, msg);
+        responseWrite(objectMapper, response, error);
     }
 
     /**
@@ -38,10 +37,10 @@ public class ResponseUtil {
      * @param response
      * @param obj
      */
-    public static void responseSucceed(ObjectMapper objectMapper, HttpServletResponse response, Object obj) throws IOException {
-        Result result = Result.succeed(obj);
-        responseWrite(objectMapper, response, result);
-    }
+//    public static void responseSucceed(ObjectMapper objectMapper, HttpServletResponse response, Object obj) throws IOException {
+//        R result = R.ok(obj);
+//        responseWrite(objectMapper, response, result);
+//    }
 
     /**
      * 通过流写到前端
@@ -52,11 +51,11 @@ public class ResponseUtil {
      * @throws IOException
      */
     public static void responseFailed(ObjectMapper objectMapper, HttpServletResponse response, String msg) throws IOException {
-        Result result = Result.failed(msg);
-        responseWrite(objectMapper, response, result);
+        R error = R.error(msg);
+        responseWrite(objectMapper, response, error);
     }
 
-    private static void responseWrite(ObjectMapper objectMapper, HttpServletResponse response, Result result) throws IOException {
+    private static void responseWrite(ObjectMapper objectMapper, HttpServletResponse response, R result) throws IOException {
         response.setContentType("application/json;charset=UTF-8");
         try (
                 Writer writer = response.getWriter()

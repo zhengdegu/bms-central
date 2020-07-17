@@ -23,11 +23,14 @@
         <spring-cloud-dependencies.version>Hoxton.SR6</spring-cloud-dependencies.version>
         <commons-collections4.version>4.4</commons-collections4.version>
         <fastjson.version>1.2.70</fastjson.version>
+        <mysql.version>5.1.44</mysql.version>
+        <mybatis-plus-boot-starter.version>3.3.1</mybatis-plus-boot-starter.version>
         <swagger.version>2.9.2</swagger.version>
         <swagger.ui.version>1.8.7</swagger.ui.version>
         <swagger.mg.ui.version>1.0.6</swagger.mg.ui.version>
         <swagger.butler.version>2.0.1</swagger.butler.version>
-        <jjwt.version>0.9.1</jjwt.version>
+        <jwt.version>0.9.1</jwt.version>
+        <shiro.version>1.5.3</shiro.version>
         <druid-starter>1.1.22</druid-starter>
         <jasypt.version>1.14</jasypt.version>
         <sharding-sphere.version>3.1.0</sharding-sphere.version>
@@ -117,10 +120,28 @@
                 <artifactId>uua-spring-boot-starter</artifactId>
                 <version>${project.version}</version>
             </dependency>
+            <!-- Mysql Driver -->
             <dependency>
-                <groupId>io.jsonwebtoken</groupId>
-                <artifactId>jjwt</artifactId>
-                <version>${jjwt.version}</version>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>${mysql.version}</version>
+                <scope>runtime</scope>
+            </dependency>
+            <!-- mybatis-plus start -->
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-boot-starter</artifactId>
+                <version>${mybatis-plus-boot-starter.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-extension</artifactId>
+                <version>${mybatis-plus-boot-starter.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus</artifactId>
+                <version>${mybatis-plus-boot-starter.version}</version>
             </dependency>
             <!-- druid 官方 starter -->
             <dependency>
@@ -144,6 +165,21 @@
                 <groupId>org.redisson</groupId>
                 <artifactId>redisson-spring-boot-starter</artifactId>
                 <version>${redisson-starter.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.shiro</groupId>
+                <artifactId>shiro-core</artifactId>
+                <version>${shiro.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.shiro</groupId>
+                <artifactId>shiro-spring</artifactId>
+                <version>${shiro.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.jsonwebtoken</groupId>
+                <artifactId>jjwt</artifactId>
+                <version>${jwt.version}</version>
             </dependency>
             <!-- swagger -->
             <dependency>
@@ -209,11 +245,6 @@
                 <groupId>cn.afterturn</groupId>
                 <artifactId>easypoi-base</artifactId>
                 <version>${easypoi.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.baomidou</groupId>
-                <artifactId>mybatis-plus</artifactId>
-                <version>${mybatis-plus-boot-starter.version}</version>
             </dependency>
             <dependency>
                 <groupId>de.codecentric</groupId>

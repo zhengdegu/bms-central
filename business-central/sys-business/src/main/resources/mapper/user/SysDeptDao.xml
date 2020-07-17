@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.gu.business.user.dao.SysDeptDao">
+
+    <!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.gu.business.user.entity.SysDeptEntity" id="sysDeptMap">
+        <result property="deptId" column="dept_id"/>
+        <result property="pid" column="pid"/>
+        <result property="subCount" column="sub_count"/>
+        <result property="name" column="name"/>
+        <result property="deptSort" column="dept_sort"/>
+        <result property="enabled" column="enabled"/>
+        <result property="createBy" column="create_by"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateTime" column="update_time"/>
+    </resultMap>
+
+
+</mapper>

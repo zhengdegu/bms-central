@@ -9,7 +9,6 @@ import org.springframework.security.oauth2.provider.NoSuchClientException;
 import org.springframework.security.oauth2.provider.client.JdbcClientDetailsService;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
-import sun.security.util.SecurityConstants;
 
 import javax.sql.DataSource;
 import java.util.List;
