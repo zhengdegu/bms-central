@@ -76,15 +76,9 @@
             <version>${commons-beanutils.version}</version>
         </dependency>
         <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>fastjson</artifactId>
-            <version>${fastjson.version}</version>
-        </dependency>
-        <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
         </dependency>
-
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
@@ -120,6 +114,11 @@
                 <artifactId>uua-spring-boot-starter</artifactId>
                 <version>${project.version}</version>
             </dependency>
+            <dependency>
+                <groupId>com.gu</groupId>
+                <artifactId>security-spring-boot-starter</artifactId>
+                <version>${project.version}</version>
+            </dependency>
             <!-- Mysql Driver -->
             <dependency>
                 <groupId>mysql</groupId>
@@ -148,6 +147,11 @@
                 <groupId>com.alibaba</groupId>
                 <artifactId>druid-spring-boot-starter</artifactId>
                 <version>${druid-starter}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>${fastjson.version}</version>
             </dependency>
             <!-- 加入spring security spring security oauth2的处理 -->
             <dependency>

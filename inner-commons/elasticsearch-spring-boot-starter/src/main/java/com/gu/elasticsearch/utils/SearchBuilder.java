@@ -2,7 +2,7 @@ package com.gu.elasticsearch.utils;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.gu.common.model.PageResult;
+import com.gu.common.utils.R;
 import org.apache.commons.beanutils.PropertyUtils;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.BooleanUtils;
@@ -24,10 +24,7 @@ import org.springframework.data.elasticsearch.core.ElasticsearchRestTemplate;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * es查询简单封装
@@ -242,7 +239,7 @@ public class SearchBuilder {
     /**
      * 返回分页结果 PageResult<JSONObject>
      */
-    public PageResult<JSONObject> getPage() throws IOException {
+    public R getPage() throws IOException {
         return this.getPage(null, null);
     }
 
@@ -252,13 +249,16 @@ public class SearchBuilder {
      * @param page  当前页数
      * @param limit 每页显示
      */
-    public PageResult<JSONObject> getPage(Integer page, Integer limit) throws IOException {
+    public R getPage(Integer page, Integer limit) throws IOException {
         this.setPage(page, limit);
         SearchResponse response = this.get();
         SearchHits searchHits = response.getHits();
         long totalCount = searchHits.getTotalHits().value;
         List<JSONObject> list = getList(searchHits);
-        return PageResult.<JSONObject>builder().data(list).code(0).count(totalCount).build();
+        Map<String,Object> map =new HashMap<>(2);
+        map.put("count",totalCount);
+        map.put("data",list);
+        return R.ok(map);
     }
 
     /**

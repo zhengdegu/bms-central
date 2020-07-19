@@ -15,7 +15,7 @@
         <module>elasticsearch-spring-boot-starter</module>
         <module>common-spring-boot-starter</module>
         <module>uua-spring-boot-starter</module>
+        <module>security-spring-boot-starter</module>
     </modules>
-
 
 </project>

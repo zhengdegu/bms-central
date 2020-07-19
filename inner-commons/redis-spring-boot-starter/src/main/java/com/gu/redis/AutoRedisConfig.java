@@ -8,6 +8,7 @@ import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.cache.interceptor.KeyGenerator;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.data.redis.cache.RedisCacheConfiguration;
 import org.springframework.data.redis.cache.RedisCacheManager;
@@ -26,7 +27,7 @@ import java.util.Map;
  * @author FastG
  * @date 2020/5/12 17:13
  */
-
+@Configuration
 @EnableConfigurationProperties({RedisProperties.class, CacheManagerProperties.class})
 @EnableCaching
 public class AutoRedisConfig {
@@ -65,8 +66,8 @@ public class AutoRedisConfig {
     }
 
     @Bean
-    public RedisRepository redisUtil(RedisConnectionFactory redisConnectionFactory, RedisTemplate redisTemplate, HashOperations hashOperations) {
-        return new RedisRepository(redisConnectionFactory, redisTemplate, hashOperations);
+    public RedisRepository redisRepository(RedisTemplate stringRedisTemplate){
+        return  new RedisRepository(stringRedisTemplate);
     }
 
     @Bean(name = "cacheManager")

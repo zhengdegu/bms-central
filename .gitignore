@@ -6,10 +6,10 @@ pom.xml.tag
 pom.xml.releaseBackup
 pom.xml.versionsBackup
 pom.xml.next
-release.properties
+release.com.gu.common.properties
 dependency-reduced-pom.xml
-buildNumber.properties
-.mvn/timing.properties
+buildNumber.com.gu.common.properties
+.mvn/timing.com.gu.common.properties
 .mvn/wrapper/maven-wrapper.jar
 
 #################
@@ -23,7 +23,7 @@ tmp/
 *.bak
 *.swp
 *~.nib
-local.properties
+local.com.gu.common.properties
 .settings
 .project
 .loadpath
@@ -134,9 +134,9 @@ atlassian-ide-plugin.xml
 
 # Crashlytics plugin (for Android Studio and IntelliJ)
 com_crashlytics_export_strings.xml
-crashlytics.properties
-crashlytics-build.properties
-fabric.properties
+crashlytics.com.gu.common.properties
+crashlytics-build.com.gu.common.properties
+fabric.com.gu.common.properties
 
 # Editor-based Rest Client
 .idea/httpRequests

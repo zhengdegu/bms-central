@@ -1,10 +1,9 @@
 package com.gu.business.user;
 
-import com.gu.common.properties.SecurityProperties;
+
 import io.swagger.annotations.Api;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
@@ -18,7 +17,6 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableTransactionManagement
 @EnableJpaAuditing
 @SpringBootApplication
-@EnableConfigurationProperties(SecurityProperties.class)
 public class UserApplication {
 
     public static void main(String[] args) {

@@ -1,0 +1,4 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.gu.common.store.JwtTokenStoreConfig, \
+com.gu.common.store.RedisTokenStoreConfig
+  
