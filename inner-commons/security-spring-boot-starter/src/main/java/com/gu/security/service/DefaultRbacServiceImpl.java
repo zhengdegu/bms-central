@@ -16,7 +16,6 @@ import javax.servlet.http.HttpServletRequest;
  * @author FastG
  * @date 2020/7/20 13:48
  */
-@Service("rbacService")
 public class DefaultRbacServiceImpl implements RbacService {
 
     private AntPathMatcher antPathMatcher = new AntPathMatcher();

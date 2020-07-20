@@ -24,6 +24,8 @@ import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+import org.springframework.security.web.authentication.logout.LogoutHandler;
+import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
 
 import javax.annotation.Resource;
 import javax.servlet.ServletException;
@@ -63,13 +65,26 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
     private OAuth2AccessDeniedHandler oAuth2AccessDeniedHandler;
 
 
+
+    @Autowired
+    private LogoutHandler logoutHandler;
+
+    @Autowired
+    private LogoutSuccessHandler logoutSuccessHandler;
+
     @Override
     public void configure(HttpSecurity http) throws Exception {
         http.formLogin()
                 .loginPage(SecurityConstants.DEFAULT_UNAUTHENTICATION_URL)
                 .loginProcessingUrl(SecurityConstants.DEFAULT_LOGIN_PROCESSING_URL_FORM)
                 .successHandler(authenticationSuccessHandler)
-                .failureHandler(authenticationFailureHandler);
+                .failureHandler(authenticationFailureHandler)
+                .and()
+                .logout()
+                .logoutUrl(SecurityConstants.LOGOUT_URL)
+                .addLogoutHandler(logoutHandler)
+                .logoutSuccessHandler(logoutSuccessHandler)
+                .clearAuthentication(true);
         http
                 //应用验证码安全配置
                 .apply(validateCodeSecurityConfig)
@@ -78,7 +93,6 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
         // 引用默认配置
         authorizeConfigManager.config(http.authorizeRequests());
     }
-
 
 
     @Override
