@@ -1,4 +1,4 @@
-package com.gu.common.domain;
+package com.gu.business.user.domain;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.EqualsAndHashCode;

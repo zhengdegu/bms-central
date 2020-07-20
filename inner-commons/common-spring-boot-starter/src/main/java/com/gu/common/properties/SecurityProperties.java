@@ -7,6 +7,8 @@ import lombok.Getter;
 import lombok.Setter;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Setter
@@ -24,7 +26,10 @@ public class SecurityProperties {
      * OAuth2认证服务器配置
      */
     private OAuth2Properties oauth2 = new OAuth2Properties();
-
+    /**
+     * 配置需要放权的url白名单
+     */
+    private PermitProperties ignore = new PermitProperties();
     /**
      * oauth2配置
      */
@@ -35,7 +40,7 @@ public class SecurityProperties {
         /**
          * 客户端配置
          */
-        private OAuth2ClientProperties[] clients = {};
+        private List<SecurityProperties.OAuth2ClientProperties> clients;
 
         /**
          * jwt的签名
@@ -68,6 +73,11 @@ public class SecurityProperties {
          * 针对此应用发出的token的有效时间
          */
         private int accessTokenValidateSeconds = 7200;
+
+        /**
+         * 刷新令牌的过期时间
+         */
+        private int refreshTokenValiditySeconds = 7200;
     }
 
     /**
@@ -172,6 +182,46 @@ public class SecurityProperties {
             private int height = 36;
 
 
+        }
+    }
+
+    /**
+     * 配置需要放权的url白名单
+     */
+    @Setter
+    @Getter
+    public class PermitProperties {
+        /**
+         * 监控中心和swagger需要访问的url
+         */
+        private final String[] ENDPOINTS = {
+                "/oauth/**",
+                "/actuator/**",
+                "/*/v2/api-docs",
+                "/swagger/api-docs",
+                "/swagger-ui.html",
+                "/swagger-resources/**",
+                "/webjars/**",
+                "/druid/**"
+        };
+
+        /**
+         * 设置不用认证的url
+         */
+        private String[] httpUrls = {};
+
+        public String[] getUrls() {
+            if (httpUrls == null || httpUrls.length == 0) {
+                return ENDPOINTS;
+            }
+            List<String> list = new ArrayList<>();
+            for (String url : ENDPOINTS) {
+                list.add(url);
+            }
+            for (String url : httpUrls) {
+                list.add(url);
+            }
+            return list.toArray(new String[list.size()]);
         }
     }
 

@@ -40,4 +40,9 @@ public interface SecurityConstants {
      * 默认保存code的前缀
      */
     String DEFAULT_CODE_KEY = "DEFAULT_CODE_KEY";
+
+    /**
+     * 超级管理员用户名
+     */
+    String ADMIN_USER_NAME = "admin";
 }

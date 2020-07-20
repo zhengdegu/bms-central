@@ -1,15 +1,13 @@
 package com.gu.security.config;
 
-import com.gu.common.jwt.DefaultJwtTokenEnhancer;
+import cn.hutool.core.collection.CollectionUtil;
 import com.gu.common.properties.SecurityProperties;
+import org.apache.commons.lang3.ArrayUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.annotation.Order;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.oauth2.config.annotation.builders.InMemoryClientDetailsServiceBuilder;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
@@ -91,33 +89,21 @@ public class DefaultAuthorizationServerConfig extends AuthorizationServerConfigu
      */
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
-       // 存储在内存中
-        clients.inMemory()
-                // 设置clientid
-                .withClient("gu")
-                // 设置clientsecret
-                .secret("gu")
-                // 设置令牌过期时间
-                .accessTokenValiditySeconds(7200)
-                // 允许的授权模式
-                .authorizedGrantTypes("refresh_token", "authorization_code", "password")
-                // 配置oauth能获取的权限
-                .scopes("all")
-                .and()
-                // 第二个app
-                .withClient("earthchen_web");
-//        InMemoryClientDetailsServiceBuilder builder = clients.inMemory();
-//        if (ArrayUtils.isNotEmpty(securityProperties.getOauth2().getClients())) {
-//            for (OAuth2ClientProperties config : securityProperties.getOauth2().getClients()) {
-//                builder.withClient(config.getClientId())
-//                        .secret(config.getClientSecret())
-//                        .accessTokenValiditySeconds(config.getAccessTokenValidateSeconds())
-//                        .authorizedGrantTypes("refresh_token", "authorization_code", "password")
-//                        // 设置刷新令牌的过期时间
-//                        .refreshTokenValiditySeconds(2592000)
-//                        .scopes("all", "write", "read");
-//            }
-//        }
+
+        InMemoryClientDetailsServiceBuilder builder = clients.inMemory();
+
+        if (CollectionUtil.isNotEmpty(securityProperties.getOauth2().getClients())){
+            for (SecurityProperties.OAuth2ClientProperties client : securityProperties.getOauth2().getClients()) {
+                builder.withClient(client.getClientId())
+                        .secret(client.getClientSecret())
+                        .accessTokenValiditySeconds(client.getAccessTokenValidateSeconds())
+                        .authorizedGrantTypes("refresh_token", "authorization_code", "password")
+                        // 设置刷新令牌的过期时间
+                        .refreshTokenValiditySeconds(2592000)
+                        .scopes("all", "write", "read");
+            }
+        }
+
     }
 
 

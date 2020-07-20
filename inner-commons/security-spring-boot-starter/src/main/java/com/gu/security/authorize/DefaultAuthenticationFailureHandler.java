@@ -1,7 +1,7 @@
 package com.gu.security.authorize;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.gu.security.support.SimpleResponse;
+import com.gu.common.utils.R;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,7 +34,7 @@ public class DefaultAuthenticationFailureHandler extends SimpleUrlAuthentication
                                         AuthenticationException exception) throws IOException, ServletException {
         response.setStatus(HttpStatus.INTERNAL_SERVER_ERROR.value());
         response.setContentType("application/json;charset=UTF-8");
-        response.getWriter().write(objectMapper.writeValueAsString(new SimpleResponse(exception.getMessage())));
+        response.getWriter().write(objectMapper.writeValueAsString(R.error(exception.getMessage())));
 
     }
 

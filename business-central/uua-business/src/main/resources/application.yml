@@ -1,11 +1,8 @@
 server:
   port: 8089
-  gu:
-    security:
-    # 配置oauth2
-      oauth2:
-        storeType: jwt
 spring:
+  application:
+    name: uua-business
   redis:
     password: sylincom
     host: 39.104.146.109
@@ -20,5 +17,18 @@ spring:
   gu:
     security:
       oauth2:
-        store-type: jwt
+        store-type: redis
+      validate-code:
+        login-code:
+          expiration: 240000
 
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 10.1.2.4:8848
+
+
+logging:
+  level:
+    com:
+      gu: debug

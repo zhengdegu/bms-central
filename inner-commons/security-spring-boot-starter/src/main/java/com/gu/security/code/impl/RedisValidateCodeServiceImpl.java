@@ -1,4 +1,5 @@
 package com.gu.security.code.impl;
+
 import com.gu.common.properties.SecurityConstants;
 import com.gu.common.properties.SecurityProperties;
 import com.gu.redis.repository.RedisRepository;
@@ -7,8 +8,6 @@ import com.gu.security.code.ValidateCodeSevice;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-
-import javax.annotation.Resource;
 
 
 /**
@@ -30,7 +29,9 @@ public class RedisValidateCodeServiceImpl implements ValidateCodeSevice {
      */
     @Override
     public void saveImageCode(String deviceId, String imageCode) {
-
+        if (log.isDebugEnabled()) {
+            log.debug("设备id{}校验码{}", deviceId, imageCode);
+        }
         redisRepository.setExpire(buildKey(deviceId), imageCode, securityProperties.getValidateCode().getLoginCode().getExpiration());
     }
 

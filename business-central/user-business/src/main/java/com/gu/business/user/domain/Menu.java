@@ -1,7 +1,6 @@
 package com.gu.business.user.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.gu.common.domain.BaseEntity;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;

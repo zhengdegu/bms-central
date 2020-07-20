@@ -2,7 +2,6 @@ package com.gu.business.user.domain;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.gu.common.domain.BaseEntity;
 import com.gu.common.model.DataScopeEnum;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
