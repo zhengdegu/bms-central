@@ -35,12 +35,12 @@ public class SecurityProperties {
      */
     @Setter
     @Getter
-    public class OAuth2Properties {
+    public static class OAuth2Properties {
 
         /**
          * 客户端配置
          */
-        private List<SecurityProperties.OAuth2ClientProperties> clients;
+        private List<SecurityProperties.OAuth2ClientProperties> clients =new ArrayList<>();
 
         /**
          * jwt的签名
@@ -59,25 +59,25 @@ public class SecurityProperties {
      */
     @Setter
     @Getter
-    public class OAuth2ClientProperties {
+    public static class OAuth2ClientProperties {
 
         /**
          * 第三方应用appId
          */
-        private String clientId;
+        private String client="gu";
         /**
          * 第三方应用appSecret
          */
-        private String clientSecret;
+        private String secret="gu";
         /**
          * 针对此应用发出的token的有效时间
          */
-        private int accessTokenValidateSeconds = 7200;
+        private int access = 7200;
 
         /**
          * 刷新令牌的过期时间
          */
-        private int refreshTokenValiditySeconds = 7200;
+        private int refresh = 7200;
     }
 
     /**
@@ -87,7 +87,7 @@ public class SecurityProperties {
      */
     @Setter
     @Getter
-    public  class ValidateCodeProperties {
+    public  static class ValidateCodeProperties {
 
         /**
          * 账号单用户 登录
@@ -190,7 +190,7 @@ public class SecurityProperties {
      */
     @Setter
     @Getter
-    public class PermitProperties {
+    public static class PermitProperties {
         /**
          * 监控中心和swagger需要访问的url
          */

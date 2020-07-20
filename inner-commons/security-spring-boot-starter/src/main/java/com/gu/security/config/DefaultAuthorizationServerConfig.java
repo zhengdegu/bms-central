@@ -94,9 +94,9 @@ public class DefaultAuthorizationServerConfig extends AuthorizationServerConfigu
 
         if (CollectionUtil.isNotEmpty(securityProperties.getOauth2().getClients())){
             for (SecurityProperties.OAuth2ClientProperties client : securityProperties.getOauth2().getClients()) {
-                builder.withClient(client.getClientId())
-                        .secret(client.getClientSecret())
-                        .accessTokenValiditySeconds(client.getAccessTokenValidateSeconds())
+                builder.withClient(client.getClient())
+                        .secret(client.getSecret())
+                        .accessTokenValiditySeconds(client.getAccess())
                         .authorizedGrantTypes("refresh_token", "authorization_code", "password")
                         // 设置刷新令牌的过期时间
                         .refreshTokenValiditySeconds(2592000)

@@ -18,6 +18,9 @@ spring:
     security:
       oauth2:
         store-type: redis
+        clients:
+          - client: gu
+            secret: gu
       validate-code:
         login-code:
           expiration: 240000
