@@ -5,7 +5,6 @@ import com.gu.common.properties.dto.UserDetailsDto;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.AuthorityUtils;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -30,7 +29,7 @@ public class DefaultUserDetailServiceImpl implements UserDetailsService {
         userDto.setEnabled(true);
         userDto.setPassword(passwordEncoder.encode("123456"));
 
-        return  new UserDetailsDto(userDto,null,AuthorityUtils.commaSeparatedStringToAuthorityList("admin"));
+        return  new UserDetailsDto(userDto,AuthorityUtils.commaSeparatedStringToAuthorityList("admin"));
         //return new User(username, passwordEncoder.encode("123456"), AuthorityUtils.commaSeparatedStringToAuthorityList("admin"));
     }
 }

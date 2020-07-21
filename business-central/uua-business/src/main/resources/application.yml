@@ -3,6 +3,19 @@ server:
 spring:
   application:
     name: uua-business
+  # jackson时间格式化
+  jackson:
+    time-zone: GMT+8
+    date-format: yyyy-MM-dd HH:mm:ss
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 100MB
+      enabled: true
+  mvc:
+    throw-exception-if-no-handler-found: true
+
+
   redis:
     password: sylincom
     host: 39.104.146.109
@@ -35,3 +48,19 @@ logging:
   level:
     com:
       gu: debug
+feign:
+  okhttp:
+    enabled: true
+  httpclient:
+    enabled: true
+    max-connections: 1000
+    max-connections-per-route: 100
+  compression:
+    request:
+      mime-types: ext/xml,application/xml,application/json
+      min-request-size: 2048
+      enabled: true
+    response:
+      enabled: true
+
+

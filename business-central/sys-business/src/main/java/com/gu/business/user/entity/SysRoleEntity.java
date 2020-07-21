@@ -9,6 +9,7 @@ import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 /**
  * 角色表
@@ -65,5 +66,5 @@ public class SysRoleEntity implements Serializable {
      * 菜单
      */
     @TableField(exist=false)
-    private List<Long> menuIdList;
+    private Set<SysMenuEntity> menuIdList;
 }

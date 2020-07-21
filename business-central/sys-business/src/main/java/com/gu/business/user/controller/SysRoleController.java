@@ -2,12 +2,16 @@ package com.gu.business.user.controller;
 
 import com.gu.business.user.entity.SysRoleEntity;
 import com.gu.business.user.service.SysRoleService;
+import com.gu.common.domain.dto.UserDto;
 import com.gu.common.utils.PageUtils;
 import com.gu.common.utils.R;
+import org.redisson.api.RList;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
 

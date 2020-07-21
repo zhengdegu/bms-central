@@ -3,7 +3,6 @@ package com.gu.common.store;
 import com.gu.common.jwt.DefaultJwtTokenEnhancer;
 import com.gu.common.properties.SecurityProperties;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;

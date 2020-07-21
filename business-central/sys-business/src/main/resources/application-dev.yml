@@ -32,6 +32,16 @@ spring:
                 wall:
                     config:
                         multi-statement-allow: true
+    gu:
+        security:
+            oauth2:
+                store-type: redis
+                clients:
+                    - client: gu
+                      secret: gu
+            validate-code:
+                login-code:
+                    expiration: 240000
     cloud:
         nacos:
             discovery:

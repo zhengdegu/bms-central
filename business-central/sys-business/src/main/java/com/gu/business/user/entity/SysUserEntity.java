@@ -3,6 +3,8 @@ package com.gu.business.user.entity;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.gu.common.domain.dto.JobDto;
+import com.gu.common.domain.dto.RoleDto;
 import com.gu.common.validator.group.AddGroup;
 import com.gu.common.validator.group.UpdateGroup;
 import lombok.Data;
@@ -12,6 +14,7 @@ import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 /**
  * 系统用户
@@ -98,9 +101,4 @@ public class SysUserEntity implements Serializable {
      * 更新时间
      */
     private Date updateTime;
-    /**
-     * 角色ID列表
-     */
-    @TableField(exist=false)
-    private List<Long> roleIdList;
 }

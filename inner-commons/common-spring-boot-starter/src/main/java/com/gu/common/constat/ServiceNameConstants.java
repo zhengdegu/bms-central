@@ -11,7 +11,7 @@ public interface ServiceNameConstants {
     /**
      * 用户权限服务
      */
-    String USER_SERVICE = "user-server";
+    String USER_SERVICE = "sys-business";
     /**
      * 搜索中心服务
      */

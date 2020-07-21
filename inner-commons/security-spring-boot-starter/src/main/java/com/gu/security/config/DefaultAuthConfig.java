@@ -1,5 +1,6 @@
 package com.gu.security.config;
 
+import com.gu.common.config.DefaultPasswordConfig;
 import com.gu.common.properties.SecurityProperties;
 import com.gu.security.authorize.DefaultLogoutHandler;
 import com.gu.security.authorize.DefaultLogoutSuccessHandler;
@@ -12,9 +13,8 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.logout.LogoutHandler;
 import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
 
@@ -24,6 +24,7 @@ import org.springframework.security.web.authentication.logout.LogoutSuccessHandl
  **/
 @EnableConfigurationProperties({SecurityProperties.class})
 @Configuration
+@Import(DefaultPasswordConfig.class)
 public class DefaultAuthConfig {
 
 
@@ -52,10 +53,10 @@ public class DefaultAuthConfig {
     }
 
 
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
+//    @Bean
+//    public PasswordEncoder passwordEncoder() {
+//        return new BCryptPasswordEncoder();
+//    }
 
 
     @Bean

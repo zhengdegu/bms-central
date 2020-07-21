@@ -3,6 +3,8 @@ package com.gu.business.user.dao;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.gu.business.user.entity.SysUserEntity;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 
 /**
  * 系统用户
@@ -14,4 +16,6 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface SysUserDao extends BaseMapper<SysUserEntity> {
 
+    @Select("select*from sys_user where username=#{username}")
+    SysUserEntity findByName(@Param("username") String username);
 }

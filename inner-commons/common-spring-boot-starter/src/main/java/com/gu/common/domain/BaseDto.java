@@ -7,6 +7,7 @@ import lombok.ToString;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.util.Date;
 
 /**
  * @author FastG
@@ -22,8 +23,12 @@ public class BaseDto implements Serializable {
 
     private String updatedBy;
 
-    private Timestamp createTime;
-
-    private Timestamp updateTime;
-
+    /**
+     * 创建日期
+     */
+    private Date createTime;
+    /**
+     * 更新时间
+     */
+    private Date updateTime;
 }
