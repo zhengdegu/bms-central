@@ -1,3 +1,18 @@
+/*
+ *  Copyright 2019-2020 Zheng Jie
+ *
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *
+ *  http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ */
 package com.gu.business.user.repository;
 
 import com.gu.business.user.domain.User;
@@ -11,14 +26,13 @@ import java.util.List;
 import java.util.Set;
 
 /**
- * @author FastG
- * @date 2020/7/14 14:33
+ * @author Zheng Jie
+ * @date 2018-11-22
  */
 public interface UserRepository extends JpaRepository<User, Long>, JpaSpecificationExecutor<User> {
 
     /**
      * 根据用户名查询
-     *
      * @param username 用户名
      * @return /
      */
@@ -26,7 +40,6 @@ public interface UserRepository extends JpaRepository<User, Long>, JpaSpecificat
 
     /**
      * 根据邮箱查询
-     *
      * @param email 邮箱
      * @return /
      */
@@ -40,22 +53,20 @@ public interface UserRepository extends JpaRepository<User, Long>, JpaSpecificat
      * @param lastPasswordResetTime /
      */
     @Modifying
-    @Query(value = "update sys_user set password = ?2 , pwd_reset_time = ?3 where username = ?1", nativeQuery = true)
+    @Query(value = "update sys_user set password = ?2 , pwd_reset_time = ?3 where username = ?1",nativeQuery = true)
     void updatePass(String username, String pass, Date lastPasswordResetTime);
 
     /**
      * 修改邮箱
-     *
      * @param username 用户名
-     * @param email    邮箱
+     * @param email 邮箱
      */
     @Modifying
-    @Query(value = "update sys_user set email = ?2 where username = ?1", nativeQuery = true)
+    @Query(value = "update sys_user set email = ?2 where username = ?1",nativeQuery = true)
     void updateEmail(String username, String email);
 
     /**
      * 根据角色查询用户
-     *
      * @param roleId /
      * @return /
      */
@@ -65,7 +76,6 @@ public interface UserRepository extends JpaRepository<User, Long>, JpaSpecificat
 
     /**
      * 根据角色中的部门查询
-     *
      * @param id /
      * @return /
      */
@@ -75,7 +85,6 @@ public interface UserRepository extends JpaRepository<User, Long>, JpaSpecificat
 
     /**
      * 根据菜单查询
-     *
      * @param id 菜单ID
      * @return /
      */
@@ -85,14 +94,12 @@ public interface UserRepository extends JpaRepository<User, Long>, JpaSpecificat
 
     /**
      * 根据Id删除
-     *
      * @param ids /
      */
     void deleteAllByIdIn(Set<Long> ids);
 
     /**
      * 根据岗位查询
-     *
      * @param ids /
      * @return /
      */
@@ -101,7 +108,6 @@ public interface UserRepository extends JpaRepository<User, Long>, JpaSpecificat
 
     /**
      * 根据部门查询
-     *
      * @param deptIds /
      * @return /
      */
@@ -110,7 +116,6 @@ public interface UserRepository extends JpaRepository<User, Long>, JpaSpecificat
 
     /**
      * 根据角色查询
-     *
      * @param ids /
      * @return /
      */

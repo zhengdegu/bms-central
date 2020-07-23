@@ -15,6 +15,7 @@
         <module>user-business</module>
         <module>uua-business</module>
         <module>sys-business</module>
+        <module>gateway-business</module>
     </modules>
 
 

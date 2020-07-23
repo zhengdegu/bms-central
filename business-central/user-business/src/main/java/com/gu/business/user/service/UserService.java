@@ -1,7 +1,23 @@
+/*
+ *  Copyright 2019-2020 Zheng Jie
+ *
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *
+ *  http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ */
 package com.gu.business.user.service;
 
-import com.gu.common.domain.dto.UserDto;
-import com.gu.common.domain.dto.UserQueryCriteria;
+import com.gu.business.user.domain.User;
+import com.gu.business.user.service.dto.UserDto;
+import com.gu.business.user.service.dto.UserQueryCriteria;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -12,14 +28,13 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- * @author FastG
- * @date 2020/7/14 14:33
+ * @author Zheng Jie
+ * @date 2018-11-23
  */
 public interface UserService {
 
     /**
      * 根据ID查询
-     *
      * @param id ID
      * @return /
      */
@@ -30,25 +45,23 @@ public interface UserService {
      *
      * @param resources /
      */
-    void create(UserDto resources);
+    void create(User resources);
 
     /**
      * 编辑用户
      *
      * @param resources /
      */
-    void update(UserDto resources);
+    void update(User resources);
 
     /**
      * 删除用户
-     *
      * @param ids /
      */
     void delete(Set<Long> ids);
 
     /**
      * 根据用户名查询
-     *
      * @param userName /
      * @return /
      */
@@ -56,15 +69,13 @@ public interface UserService {
 
     /**
      * 修改密码
-     *
-     * @param username        用户名
+     * @param username 用户名
      * @param encryptPassword 密码
      */
     void updatePass(String username, String encryptPassword);
 
     /**
      * 修改头像
-     *
      * @param file 文件
      * @return /
      */
@@ -72,15 +83,13 @@ public interface UserService {
 
     /**
      * 修改邮箱
-     *
      * @param username 用户名
-     * @param email    邮箱
+     * @param email 邮箱
      */
     void updateEmail(String username, String email);
 
     /**
      * 查询全部
-     *
      * @param criteria 条件
      * @param pageable 分页参数
      * @return /
@@ -89,7 +98,6 @@ public interface UserService {
 
     /**
      * 查询全部不分页
-     *
      * @param criteria 条件
      * @return /
      */
@@ -97,7 +105,6 @@ public interface UserService {
 
     /**
      * 导出数据
-     *
      * @param queryAll 待导出的数据
      * @param response /
      * @throws IOException /
@@ -109,5 +116,5 @@ public interface UserService {
      *
      * @param resources /
      */
-    void updateCenter(UserDto resources);
+    void updateCenter(User resources);
 }

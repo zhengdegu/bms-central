@@ -1,118 +1,134 @@
+/*
+ *  Copyright 2019-2020 Zheng Jie
+ *
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *
+ *  http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ */
 package com.gu.business.user.service.impl;
 
 import com.gu.business.user.domain.User;
 import com.gu.business.user.repository.UserRepository;
 import com.gu.business.user.service.UserService;
-import com.gu.business.user.service.mapstruct.RoleMapper;
+import com.gu.business.user.service.dto.JobSmallDto;
+import com.gu.business.user.service.dto.RoleSmallDto;
+import com.gu.business.user.service.dto.UserDto;
+import com.gu.business.user.service.dto.UserQueryCriteria;
 import com.gu.business.user.service.mapstruct.UserMapper;
-import com.gu.common.domain.dto.JobSmallDto;
-import com.gu.common.domain.dto.RoleSmallDto;
-import com.gu.common.domain.dto.UserDto;
-import com.gu.common.domain.dto.UserQueryCriteria;
-import com.gu.common.exception.EntityExistException;
-import com.gu.common.exception.EntityNotFoundException;
-import com.gu.common.utils.FileUtil;
+import com.gu.business.user.utils.QueryHelp;
+import com.gu.common.admin.config.FileProperties;
+import com.gu.common.admin.exception.EntityExistException;
+import com.gu.common.admin.exception.EntityNotFoundException;
+import com.gu.common.admin.utils.*;
+import com.gu.redis.repository.RedisRepository;
+import lombok.RequiredArgsConstructor;
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.constraints.NotBlank;
+import java.io.File;
 import java.io.IOException;
 import java.util.*;
 import java.util.stream.Collectors;
 
 /**
- * @author FastG
- * @date 2020/7/14 14:33
+ * @author Zheng Jie
+ * @date 2018-11-23
  */
 @Service
+@RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
 
-    @Resource
-    private UserRepository userRepository;
-    @Resource
-    private UserMapper userMapper;
-    @Resource
-    private RoleMapper roleMapper;
-
+    private final UserRepository userRepository;
+    private final UserMapper userMapper;
+    private final FileProperties properties;
 
     @Override
     public Object queryAll(UserQueryCriteria criteria, Pageable pageable) {
-        return null;
+        Page<User> page = userRepository.findAll((root, criteriaQuery, criteriaBuilder) -> QueryHelp.getPredicate(root, criteria, criteriaBuilder), pageable);
+        return PageUtil.toPage(page.map(userMapper::toDto));
     }
 
     @Override
     public List<UserDto> queryAll(UserQueryCriteria criteria) {
-        return null;
+        List<User> users = userRepository.findAll((root, criteriaQuery, criteriaBuilder) -> QueryHelp.getPredicate(root, criteria, criteriaBuilder));
+        return userMapper.toDto(users);
     }
 
     @Override
+    @Cacheable(key = "'id:' + #p0")
     @Transactional(rollbackFor = Exception.class)
     public UserDto findById(long id) {
         User user = userRepository.findById(id).orElseGet(User::new);
+        ValidationUtil.isNull(user.getId(), "User", "id", id);
         return userMapper.toDto(user);
     }
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public void create(UserDto resources) {
+    public void create(User resources) {
         if (userRepository.findByUsername(resources.getUsername()) != null) {
             throw new EntityExistException(User.class, "username", resources.getUsername());
         }
         if (userRepository.findByEmail(resources.getEmail()) != null) {
             throw new EntityExistException(User.class, "email", resources.getEmail());
         }
-        userRepository.save(userMapper.toEntity(resources));
+        userRepository.save(resources);
     }
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public void update(UserDto resources) {
-        User user1 = userRepository.findById(resources.getId()).orElseGet(User::new);
-        User user2 = userRepository.findByUsername(resources.getUsername());
-        User user3 = userRepository.findByEmail(resources.getEmail());
+    public void update(User resources) {
+        User user = userRepository.findById(resources.getId()).orElseGet(User::new);
+        ValidationUtil.isNull(user.getId(), "User", "id", resources.getId());
+        User user1 = userRepository.findByUsername(resources.getUsername());
+        User user2 = userRepository.findByEmail(resources.getEmail());
 
-        if (user2 != null && !user1.getId().equals(user2.getId())) {
+        if (user1 != null && !user.getId().equals(user1.getId())) {
             throw new EntityExistException(User.class, "username", resources.getUsername());
         }
 
-        if (user3 != null && !user1.getId().equals(user3.getId())) {
+        if (user2 != null && !user.getId().equals(user2.getId())) {
             throw new EntityExistException(User.class, "email", resources.getEmail());
         }
-        // 如果用户的角色改变
-        if (!resources.getRoles().equals(user1.getRoles())) {
 
-        }
-        // 如果用户名称修改
-        if (!resources.getUsername().equals(user1.getUsername())) {
-
-        }
-        User user = userMapper.toEntity(resources);
-        user.setUsername(user.getUsername());
-        user.setEmail(user.getEmail());
-        user.setEnabled(user.getEnabled());
-        user.setRoles(user.getRoles());
-        user.setDept(user.getDept());
-        user.setJobs(user.getJobs());
-        user.setPhone(user.getPhone());
-        user.setNickName(user.getNickName());
-        user.setGender(user.getGender());
+        user.setUsername(resources.getUsername());
+        user.setEmail(resources.getEmail());
+        user.setEnabled(resources.getEnabled());
+        user.setRoles(resources.getRoles());
+        user.setDept(resources.getDept());
+        user.setJobs(resources.getJobs());
+        user.setPhone(resources.getPhone());
+        user.setNickName(resources.getNickName());
+        user.setGender(resources.getGender());
         userRepository.save(user);
-
+        // 清除缓存
     }
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public void updateCenter(UserDto resources) {
+    public void updateCenter(User resources) {
         User user = userRepository.findById(resources.getId()).orElseGet(User::new);
         user.setNickName(resources.getNickName());
         user.setPhone(resources.getPhone());
         user.setGender(resources.getGender());
         userRepository.save(user);
         // 清理缓存
-
     }
 
     @Override
@@ -126,6 +142,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Cacheable(key = "'username:' + #p0")
     public UserDto findByName(String userName) {
         User user = userRepository.findByUsername(userName);
         if (user == null) {
@@ -144,8 +161,18 @@ public class UserServiceImpl implements UserService {
     @Override
     @Transactional(rollbackFor = Exception.class)
     public Map<String, String> updateAvatar(MultipartFile multipartFile) {
-
+        User user = userRepository.findByUsername(SecurityUtils.getCurrentUsername());
+        String oldPath = user.getAvatarPath();
+        File file = FileUtil.upload(multipartFile, properties.getPath().getAvatar());
+        user.setAvatarPath(Objects.requireNonNull(file).getPath());
+        user.setAvatarName(file.getName());
+        userRepository.save(user);
+        if (StringUtils.isNotBlank(oldPath)) {
+            FileUtil.del(oldPath);
+        }
+        @NotBlank String username = user.getUsername();
         return new HashMap<String, String>(1) {{
+            put("avatar", file.getName());
         }};
     }
 
