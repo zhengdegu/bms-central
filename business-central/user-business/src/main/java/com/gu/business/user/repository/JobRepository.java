@@ -29,6 +29,7 @@ public interface JobRepository extends JpaRepository<Job, Long>, JpaSpecificatio
 
     /**
      * 根据名称查询
+     *
      * @param name 名称
      * @return /
      */
@@ -36,6 +37,7 @@ public interface JobRepository extends JpaRepository<Job, Long>, JpaSpecificatio
 
     /**
      * 根据Id删除
+     *
      * @param ids /
      */
     void deleteAllByIdIn(Set<Long> ids);

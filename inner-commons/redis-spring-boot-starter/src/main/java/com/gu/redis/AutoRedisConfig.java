@@ -66,8 +66,8 @@ public class AutoRedisConfig {
     }
 
     @Bean
-    public RedisRepository redisRepository(RedisTemplate stringRedisTemplate){
-        return  new RedisRepository(stringRedisTemplate);
+    public RedisRepository redisRepository(RedisTemplate stringRedisTemplate) {
+        return new RedisRepository(stringRedisTemplate);
     }
 
     @Bean(name = "cacheManager")

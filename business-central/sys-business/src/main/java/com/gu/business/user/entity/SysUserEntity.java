@@ -1,10 +1,7 @@
 package com.gu.business.user.entity;
 
-import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import com.gu.common.domain.dto.JobDto;
-import com.gu.common.domain.dto.RoleDto;
 import com.gu.common.validator.group.AddGroup;
 import com.gu.common.validator.group.UpdateGroup;
 import lombok.Data;
@@ -13,8 +10,6 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
-import java.util.Set;
 
 /**
  * 系统用户
@@ -40,7 +35,7 @@ public class SysUserEntity implements Serializable {
     /**
      * 用户名
      */
-    @NotBlank(message="用户名不能为空", groups = {AddGroup.class, UpdateGroup.class})
+    @NotBlank(message = "用户名不能为空", groups = {AddGroup.class, UpdateGroup.class})
     private String username;
     /**
      * 昵称
@@ -57,8 +52,8 @@ public class SysUserEntity implements Serializable {
     /**
      * 邮箱
      */
-    @NotBlank(message="邮箱不能为空", groups = {AddGroup.class, UpdateGroup.class})
-    @Email(message="邮箱格式不正确", groups = {AddGroup.class, UpdateGroup.class})
+    @NotBlank(message = "邮箱不能为空", groups = {AddGroup.class, UpdateGroup.class})
+    @Email(message = "邮箱格式不正确", groups = {AddGroup.class, UpdateGroup.class})
     private String email;
     /**
      * 头像地址
@@ -71,7 +66,7 @@ public class SysUserEntity implements Serializable {
     /**
      * 密码
      */
-    @NotBlank(message="密码不能为空", groups = AddGroup.class)
+    @NotBlank(message = "密码不能为空", groups = AddGroup.class)
     private String password;
     /**
      * 是否为admin账号

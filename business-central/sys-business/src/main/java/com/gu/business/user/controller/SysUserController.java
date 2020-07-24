@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.web.bind.annotation.*;
 
-import javax.annotation.PostConstruct;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -87,14 +86,14 @@ public class SysUserController {
      * 根据用户名查找用户
      */
     @GetMapping("/user/{username}")
-    public UserDto user(@PathVariable("username") String username){
-       return sysUserService.findByName(username);
+    public UserDto user(@PathVariable("username") String username) {
+        return sysUserService.findByName(username);
     }
 
 
     @PostMapping(value = "/user/auth")
-    List<GrantedAuthority> auth(@RequestBody UserDto user){
-        return  sysUserService.mapToGrantedAuthorities(user);
+    List<GrantedAuthority> auth(@RequestBody UserDto user) {
+        return sysUserService.mapToGrantedAuthorities(user);
 
-        }
+    }
 }

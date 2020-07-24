@@ -2,7 +2,6 @@ package com.gu.security.config;
 
 import cn.hutool.core.collection.CollectionUtil;
 import com.gu.common.properties.SecurityProperties;
-import org.apache.commons.lang3.ArrayUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -48,7 +47,6 @@ public class DefaultAuthorizationServerConfig extends AuthorizationServerConfigu
     private TokenEnhancer jwtTokenEnhancer;
 
 
-
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
 
@@ -92,7 +90,7 @@ public class DefaultAuthorizationServerConfig extends AuthorizationServerConfigu
 
         InMemoryClientDetailsServiceBuilder builder = clients.inMemory();
 
-        if (CollectionUtil.isNotEmpty(securityProperties.getOauth2().getClients())){
+        if (CollectionUtil.isNotEmpty(securityProperties.getOauth2().getClients())) {
             for (SecurityProperties.OAuth2ClientProperties client : securityProperties.getOauth2().getClients()) {
                 builder.withClient(client.getClient())
                         .secret(client.getSecret())

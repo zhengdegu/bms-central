@@ -30,15 +30,13 @@ import com.gu.common.admin.exception.BadRequestException;
 import com.gu.common.admin.utils.PageUtil;
 import com.gu.common.admin.utils.RsaUtils;
 import com.gu.common.admin.utils.SecurityUtils;
-import com.gu.common.model.CodeEnum;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.java.Log;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.ObjectUtils;
@@ -85,8 +83,8 @@ public class UserController {
             criteria.getDeptIds().addAll(deptService.getDeptChildren(criteria.getDeptId(),
                     deptService.findByPid(criteria.getDeptId())));
         }
-        // 数据权限
-        List<Long> dataScopes = dataService.getDeptIds(userService.findByName(SecurityUtils.getCurrentUsername()));
+        // 数据权限 TODO 目前写死
+        List<Long> dataScopes = dataService.getDeptIds(userService.findByName("admin"));
         // criteria.getDeptIds() 不为空并且数据权限不为空则取交集
         if (!CollectionUtils.isEmpty(criteria.getDeptIds()) && !CollectionUtils.isEmpty(dataScopes)) {
             // 取交集
@@ -176,10 +174,31 @@ public class UserController {
      * @param resources /
      */
     private void checkLevel(User resources) {
-        Integer currentLevel = Collections.min(roleService.findByUsersId(SecurityUtils.getCurrentUserId()).stream().map(RoleSmallDto::getLevel).collect(Collectors.toList()));
+        //TODO
+        Integer currentLevel = Collections.min(roleService.findByUsersId(1l).stream().map(RoleSmallDto::getLevel).collect(Collectors.toList()));
         Integer optLevel = roleService.findByRoles(resources.getRoles());
         if (currentLevel > optLevel) {
             throw new BadRequestException("角色权限不足");
         }
     }
+
+    /**
+     * 根据用户名查找用户
+     */
+    @GetMapping("/{username}")
+    public UserDto user(@PathVariable("username") String username) {
+        return userService.findByName(username);
+    }
+
+
+    @PostMapping(value = "/auth")
+    public List<GrantedAuthority> auth(@RequestBody UserDto user) {
+        return roleService.mapToGrantedAuthorities(user);
+    }
+
+    @PostMapping(value = "/resource")
+    public List<Long> resource(@RequestBody UserDto user) {
+        return dataService.getDeptIds(user);
+    }
+
 }

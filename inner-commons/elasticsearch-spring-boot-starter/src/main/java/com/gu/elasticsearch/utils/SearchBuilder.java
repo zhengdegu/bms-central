@@ -255,9 +255,9 @@ public class SearchBuilder {
         SearchHits searchHits = response.getHits();
         long totalCount = searchHits.getTotalHits().value;
         List<JSONObject> list = getList(searchHits);
-        Map<String,Object> map =new HashMap<>(2);
-        map.put("count",totalCount);
-        map.put("data",list);
+        Map<String, Object> map = new HashMap<>(2);
+        map.put("count", totalCount);
+        map.put("data", list);
         return R.ok(map);
     }
 

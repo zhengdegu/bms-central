@@ -21,6 +21,7 @@ public class RedisValidateCodeServiceImpl implements ValidateCodeSevice {
 
     @Autowired
     private SecurityProperties securityProperties;
+
     /**
      * 保存用户验证码，和randomStr绑定
      *

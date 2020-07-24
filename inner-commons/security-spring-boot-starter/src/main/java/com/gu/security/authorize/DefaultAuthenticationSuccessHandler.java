@@ -105,7 +105,7 @@ public class DefaultAuthenticationSuccessHandler extends SavedRequestAwareAuthen
         }
 
         String token = new String(decoded, "UTF-8");
-       // String token = new String(base64Token, "UTF-8");
+        // String token = new String(base64Token, "UTF-8");
         int delim = token.indexOf(":");
 
         if (delim == -1) {

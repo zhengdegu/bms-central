@@ -30,6 +30,7 @@ public class SecurityProperties {
      * 配置需要放权的url白名单
      */
     private PermitProperties ignore = new PermitProperties();
+
     /**
      * oauth2配置
      */
@@ -40,7 +41,7 @@ public class SecurityProperties {
         /**
          * 客户端配置
          */
-        private List<SecurityProperties.OAuth2ClientProperties> clients =new ArrayList<>();
+        private List<SecurityProperties.OAuth2ClientProperties> clients = new ArrayList<>();
 
         /**
          * jwt的签名
@@ -49,7 +50,7 @@ public class SecurityProperties {
         /**
          * token存储类型
          */
-        private String storeType="redis";
+        private String storeType = "redis";
 
 
     }
@@ -64,11 +65,11 @@ public class SecurityProperties {
         /**
          * 第三方应用appId
          */
-        private String client="gu";
+        private String client = "gu";
         /**
          * 第三方应用appSecret
          */
-        private String secret="gu";
+        private String secret = "gu";
         /**
          * 针对此应用发出的token的有效时间
          */
@@ -87,7 +88,7 @@ public class SecurityProperties {
      */
     @Setter
     @Getter
-    public  static class ValidateCodeProperties {
+    public static class ValidateCodeProperties {
 
         /**
          * 账号单用户 登录
@@ -155,15 +156,13 @@ public class SecurityProperties {
         }
 
 
-
-
         @Setter
         @Getter
         public class LoginCode {
             /**
              * 验证码配置
              */
-            private LoginCodeEnum codeType= LoginCodeEnum.arithmetic;
+            private LoginCodeEnum codeType = LoginCodeEnum.arithmetic;
             /**
              * 验证码有效期 秒
              */

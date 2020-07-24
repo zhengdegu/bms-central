@@ -5,9 +5,11 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.gu.business.user.dao.*;
-import com.gu.business.user.entity.*;
+import com.gu.business.user.entity.SysJobEntity;
+import com.gu.business.user.entity.SysMenuEntity;
+import com.gu.business.user.entity.SysRoleEntity;
+import com.gu.business.user.entity.SysUserEntity;
 import com.gu.business.user.service.SysUserService;
-import com.gu.common.domain.dto.DeptDto;
 import com.gu.common.domain.dto.JobDto;
 import com.gu.common.domain.dto.RoleDto;
 import com.gu.common.domain.dto.UserDto;
@@ -67,18 +69,18 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserDao, SysUserEntity> i
         Set<SysRoleEntity> roles = sysRoleDao.findRolesByUserId(user.getUserId());
         Set<RoleDto> roleDtos = new HashSet<>();
         //暴力转换
-        roles.forEach(role ->{
-            RoleDto roleDto =new RoleDto();
-            BeanUtil.copyProperties(role,roleDto);
+        roles.forEach(role -> {
+            RoleDto roleDto = new RoleDto();
+            BeanUtil.copyProperties(role, roleDto);
             roleDtos.add(roleDto);
         });
         userDto.setRoles(roleDtos);
 
         Set<SysJobEntity> jobs = sysJobDao.findJobsByUserId(user.getUserId());
         Set<JobDto> jobDtos = new HashSet<>();
-        jobs.forEach(job ->{
-            JobDto jobDto =new JobDto();
-            BeanUtil.copyProperties(job,jobDto);
+        jobs.forEach(job -> {
+            JobDto jobDto = new JobDto();
+            BeanUtil.copyProperties(job, jobDto);
             jobDtos.add(jobDto);
         });
         userDto.setJobs(jobDtos);

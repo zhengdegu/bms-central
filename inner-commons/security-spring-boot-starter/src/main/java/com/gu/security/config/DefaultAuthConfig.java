@@ -60,7 +60,7 @@ public class DefaultAuthConfig {
 
 
     @Bean
-    public ValidateCodeSevice validateCodeSevice(){
+    public ValidateCodeSevice validateCodeSevice() {
         return new RedisValidateCodeServiceImpl();
     }
 }

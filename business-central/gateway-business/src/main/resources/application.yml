@@ -16,8 +16,11 @@ spring:
             - Path=/api/test
           filters:
           #  - StripPrefix=1
-           # - PreserveHostHeader
-
+          # - PreserveHostHeader
+         - id: uua-business
+           uri: lb://uua-business
+           predicates:
+             - Path=/api/oauth/*
     nacos:
       discovery:
         server-addr: 10.1.2.4:8848

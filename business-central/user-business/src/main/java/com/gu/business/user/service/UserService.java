@@ -35,6 +35,7 @@ public interface UserService {
 
     /**
      * 根据ID查询
+     *
      * @param id ID
      * @return /
      */
@@ -56,12 +57,14 @@ public interface UserService {
 
     /**
      * 删除用户
+     *
      * @param ids /
      */
     void delete(Set<Long> ids);
 
     /**
      * 根据用户名查询
+     *
      * @param userName /
      * @return /
      */
@@ -69,13 +72,15 @@ public interface UserService {
 
     /**
      * 修改密码
-     * @param username 用户名
+     *
+     * @param username        用户名
      * @param encryptPassword 密码
      */
     void updatePass(String username, String encryptPassword);
 
     /**
      * 修改头像
+     *
      * @param file 文件
      * @return /
      */
@@ -83,13 +88,15 @@ public interface UserService {
 
     /**
      * 修改邮箱
+     *
      * @param username 用户名
-     * @param email 邮箱
+     * @param email    邮箱
      */
     void updateEmail(String username, String email);
 
     /**
      * 查询全部
+     *
      * @param criteria 条件
      * @param pageable 分页参数
      * @return /
@@ -98,6 +105,7 @@ public interface UserService {
 
     /**
      * 查询全部不分页
+     *
      * @param criteria 条件
      * @return /
      */
@@ -105,6 +113,7 @@ public interface UserService {
 
     /**
      * 导出数据
+     *
      * @param queryAll 待导出的数据
      * @param response /
      * @throws IOException /

@@ -15,7 +15,6 @@
  */
 package com.gu.business.user.service.impl;
 
-import com.gu.business.user.domain.Dict;
 import com.gu.business.user.domain.DictDetail;
 import com.gu.business.user.repository.DictDetailRepository;
 import com.gu.business.user.repository.DictRepository;
@@ -27,7 +26,6 @@ import com.gu.business.user.utils.QueryHelp;
 import com.gu.common.admin.utils.PageUtil;
 import com.gu.common.admin.utils.ValidationUtil;
 import lombok.RequiredArgsConstructor;
-import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

@@ -34,6 +34,7 @@ public interface MenuRepository extends JpaRepository<Menu, Long>, JpaSpecificat
 
     /**
      * 根据菜单标题查询
+     *
      * @param title 菜单标题
      * @return /
      */
@@ -41,6 +42,7 @@ public interface MenuRepository extends JpaRepository<Menu, Long>, JpaSpecificat
 
     /**
      * 根据组件名称查询
+     *
      * @param name 组件名称
      * @return /
      */
@@ -48,6 +50,7 @@ public interface MenuRepository extends JpaRepository<Menu, Long>, JpaSpecificat
 
     /**
      * 根据菜单的 PID 查询
+     *
      * @param pid /
      * @return /
      */
@@ -55,6 +58,7 @@ public interface MenuRepository extends JpaRepository<Menu, Long>, JpaSpecificat
 
     /**
      * 查询顶级菜单
+     *
      * @return /
      */
     List<Menu> findByPidIsNull();
@@ -72,6 +76,7 @@ public interface MenuRepository extends JpaRepository<Menu, Long>, JpaSpecificat
 
     /**
      * 获取节点数量
+     *
      * @param id /
      * @return /
      */
@@ -79,7 +84,8 @@ public interface MenuRepository extends JpaRepository<Menu, Long>, JpaSpecificat
 
     /**
      * 更新节点数目
-     * @param count /
+     *
+     * @param count  /
      * @param menuId /
      */
     @Modifying

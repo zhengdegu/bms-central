@@ -1,20 +1,5 @@
 package com.gu.common.config;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.gu.common.utils.ResponseUtil;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.Bean;
-import org.springframework.security.access.AccessDeniedException;
-import org.springframework.security.oauth2.provider.error.OAuth2AccessDeniedHandler;
-import org.springframework.security.oauth2.provider.expression.OAuth2WebSecurityExpressionHandler;
-import org.springframework.security.web.AuthenticationEntryPoint;
-
-import javax.annotation.Resource;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-
 /**
  * @author FastG
  * @date 2020/5/28 17:59

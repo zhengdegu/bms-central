@@ -18,10 +18,10 @@ import org.springframework.test.context.junit4.SpringRunner;
 public class UserServiceTest {
 
     @Autowired
-    private SysUserService  userService;
+    private SysUserService userService;
 
     @Test
-    public  void  testsFindByName() {
+    public void testsFindByName() {
         UserDto admin = userService.findByName("admin");
         Assert.assertNotNull(admin);
     }

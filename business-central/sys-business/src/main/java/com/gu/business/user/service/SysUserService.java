@@ -22,12 +22,14 @@ public interface SysUserService extends IService<SysUserEntity> {
 
     /**
      * 根据用户名查找用户
+     *
      * @param username
      */
     UserDto findByName(String username);
 
     /**
      * 获取用户权限
+     *
      * @param user
      * @return
      */

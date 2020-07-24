@@ -1,4 +1,5 @@
 package com.gu.business.uua.config;
+
 import com.gu.business.uua.service.impl.UserDetailsServiceImpl;
 import com.gu.common.config.DefaultPasswordConfig;
 import feign.Logger;
@@ -21,6 +22,7 @@ public class AuthConfig {
     Logger.Level feignLoggerLevel() {
         return Logger.Level.FULL;
     }
+
     //覆盖 userdetailservice
     @Bean
     public UserDetailsService userDetailsService() {

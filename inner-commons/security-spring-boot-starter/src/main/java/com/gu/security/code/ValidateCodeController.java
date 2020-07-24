@@ -5,14 +5,11 @@ import cn.hutool.core.util.IdUtil;
 import com.gu.common.properties.SecurityConstants;
 import com.gu.common.properties.SecurityProperties;
 import com.gu.common.utils.R;
-
 import com.wf.captcha.base.Captcha;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.util.HashMap;
 import java.util.Map;
 

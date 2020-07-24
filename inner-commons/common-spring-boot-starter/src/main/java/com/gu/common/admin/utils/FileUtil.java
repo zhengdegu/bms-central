@@ -43,7 +43,6 @@ import java.util.Map;
  * @date 2018-12-27
  */
 public class FileUtil extends cn.hutool.core.io.FileUtil {
-    private static final Logger log = LoggerFactory.getLogger(FileUtil.class);
     /**
      * 系统临时目录
      * <br>
@@ -57,6 +56,7 @@ public class FileUtil extends cn.hutool.core.io.FileUtil {
      * </pre>
      */
     public static final String SYS_TEM_DIR = System.getProperty("java.io.tmpdir") + File.separator;
+    private static final Logger log = LoggerFactory.getLogger(FileUtil.class);
     /**
      * 定义GB的计算常量
      */

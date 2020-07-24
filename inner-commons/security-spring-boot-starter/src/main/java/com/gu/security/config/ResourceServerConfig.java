@@ -10,10 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.HttpStatus;
 import org.springframework.security.access.AccessDeniedException;
-import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfigurerAdapter;
@@ -65,12 +62,13 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
     private OAuth2AccessDeniedHandler oAuth2AccessDeniedHandler;
 
 
-
     @Autowired
     private LogoutHandler logoutHandler;
 
     @Autowired
     private LogoutSuccessHandler logoutSuccessHandler;
+    @Resource
+    private ObjectMapper objectMapper;
 
     @Override
     public void configure(HttpSecurity http) throws Exception {
@@ -94,7 +92,6 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
         authorizeConfigManager.config(http.authorizeRequests());
     }
 
-
     @Override
     public void configure(ResourceServerSecurityConfigurer resources) throws Exception {
         resources.tokenStore(tokenStore)
@@ -103,11 +100,6 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
                 .expressionHandler(expressionHandler)
                 .accessDeniedHandler(oAuth2AccessDeniedHandler);
     }
-
-
-
-    @Resource
-    private ObjectMapper objectMapper;
 
     /**
      * 未登录，返回401

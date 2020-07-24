@@ -13,6 +13,6 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 public class GateApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(GateApplication.class,args);
+        SpringApplication.run(GateApplication.class, args);
     }
 }

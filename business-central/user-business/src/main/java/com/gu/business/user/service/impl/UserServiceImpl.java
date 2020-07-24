@@ -27,12 +27,12 @@ import com.gu.business.user.utils.QueryHelp;
 import com.gu.common.admin.config.FileProperties;
 import com.gu.common.admin.exception.EntityExistException;
 import com.gu.common.admin.exception.EntityNotFoundException;
-import com.gu.common.admin.utils.*;
-import com.gu.redis.repository.RedisRepository;
+import com.gu.common.admin.utils.FileUtil;
+import com.gu.common.admin.utils.PageUtil;
+import com.gu.common.admin.utils.SecurityUtils;
+import com.gu.common.admin.utils.ValidationUtil;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.cache.annotation.CacheConfig;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -56,7 +56,8 @@ public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
     private final UserMapper userMapper;
-    private final FileProperties properties;
+    //TODO
+    private final FileProperties properties = new FileProperties();
 
     @Override
     public Object queryAll(UserQueryCriteria criteria, Pageable pageable) {
@@ -71,7 +72,6 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    @Cacheable(key = "'id:' + #p0")
     @Transactional(rollbackFor = Exception.class)
     public UserDto findById(long id) {
         User user = userRepository.findById(id).orElseGet(User::new);
@@ -142,7 +142,6 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    @Cacheable(key = "'username:' + #p0")
     public UserDto findByName(String userName) {
         User user = userRepository.findByUsername(userName);
         if (user == null) {

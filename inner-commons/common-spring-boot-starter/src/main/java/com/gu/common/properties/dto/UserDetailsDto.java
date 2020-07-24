@@ -20,7 +20,7 @@ import java.util.stream.Collectors;
 public class UserDetailsDto implements UserDetails {
 
     private final UserDto user;
-
+    private final List<Long> dataScopes;
     @JsonIgnore
     private final List<GrantedAuthority> authorities;
 

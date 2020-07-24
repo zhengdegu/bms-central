@@ -30,7 +30,6 @@ import com.gu.common.admin.exception.BadRequestException;
 import com.gu.common.admin.utils.FileUtil;
 import com.gu.common.admin.utils.ValidationUtil;
 import lombok.RequiredArgsConstructor;
-import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;

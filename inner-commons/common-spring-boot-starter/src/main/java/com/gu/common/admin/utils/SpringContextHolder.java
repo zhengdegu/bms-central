@@ -32,8 +32,8 @@ import java.util.List;
 @Slf4j
 public class SpringContextHolder implements ApplicationContextAware, DisposableBean {
 
-    private static ApplicationContext applicationContext = null;
     private static final List<CallBack> CALL_BACKS = new ArrayList<>();
+    private static ApplicationContext applicationContext = null;
     private static boolean addCallback = true;
 
     /**
@@ -80,7 +80,8 @@ public class SpringContextHolder implements ApplicationContextAware, DisposableB
         T result = defaultValue;
         try {
             result = getBean(Environment.class).getProperty(property, requiredType);
-        } catch (Exception ignored) {}
+        } catch (Exception ignored) {
+        }
         return result;
     }
 

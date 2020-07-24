@@ -8,7 +8,6 @@ import lombok.Data;
 import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 import java.util.Set;
 
 /**
@@ -31,7 +30,7 @@ public class SysRoleEntity implements Serializable {
     /**
      * 名称
      */
-    @NotBlank(message="角色名称不能为空")
+    @NotBlank(message = "角色名称不能为空")
     private String name;
     /**
      * 角色级别
@@ -65,6 +64,6 @@ public class SysRoleEntity implements Serializable {
     /**
      * 菜单
      */
-    @TableField(exist=false)
+    @TableField(exist = false)
     private Set<SysMenuEntity> menuIdList;
 }

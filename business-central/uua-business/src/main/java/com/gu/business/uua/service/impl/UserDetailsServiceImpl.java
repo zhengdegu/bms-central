@@ -10,7 +10,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -35,7 +35,8 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         }
         //List<GrantedAuthority> grantedAuthorities = new ArrayList<>();
         List<GrantedAuthority> grantedAuthorities = userService.mapToGrantedAuthorities(userDto);
-        return new UserDetailsDto(userDto,
+        List<Long> resource = userService.resource(userDto);
+        return new UserDetailsDto(userDto,resource,
                 grantedAuthorities);
     }
 }

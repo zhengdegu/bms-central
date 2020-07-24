@@ -35,6 +35,7 @@ public interface JobService {
 
     /**
      * 根据ID查询
+     *
      * @param id /
      * @return /
      */
@@ -42,6 +43,7 @@ public interface JobService {
 
     /**
      * 创建
+     *
      * @param resources /
      * @return /
      */
@@ -49,12 +51,14 @@ public interface JobService {
 
     /**
      * 编辑
+     *
      * @param resources /
      */
     void update(Job resources);
 
     /**
      * 删除
+     *
      * @param ids /
      */
     void delete(Set<Long> ids);
@@ -70,6 +74,7 @@ public interface JobService {
 
     /**
      * 查询全部数据
+     *
      * @param criteria /
      * @return /
      */
@@ -77,6 +82,7 @@ public interface JobService {
 
     /**
      * 导出数据
+     *
      * @param queryAll 待导出的数据
      * @param response /
      * @throws IOException /
@@ -85,6 +91,7 @@ public interface JobService {
 
     /**
      * 验证是否被用户关联
+     *
      * @param ids /
      */
     void verification(Set<Long> ids);

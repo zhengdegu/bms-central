@@ -33,6 +33,7 @@ public interface RoleRepository extends JpaRepository<Role, Long>, JpaSpecificat
 
     /**
      * 根据名称查询
+     *
      * @param name /
      * @return /
      */
@@ -40,12 +41,14 @@ public interface RoleRepository extends JpaRepository<Role, Long>, JpaSpecificat
 
     /**
      * 删除多个角色
+     *
      * @param ids /
      */
     void deleteAllByIdIn(Set<Long> ids);
 
     /**
      * 根据用户ID查询
+     *
      * @param id 用户ID
      * @return /
      */
@@ -55,6 +58,7 @@ public interface RoleRepository extends JpaRepository<Role, Long>, JpaSpecificat
 
     /**
      * 解绑角色菜单
+     *
      * @param id 菜单ID
      */
     @Modifying
@@ -63,6 +67,7 @@ public interface RoleRepository extends JpaRepository<Role, Long>, JpaSpecificat
 
     /**
      * 根据部门查询
+     *
      * @param deptIds /
      * @return /
      */
@@ -72,6 +77,7 @@ public interface RoleRepository extends JpaRepository<Role, Long>, JpaSpecificat
 
     /**
      * 根据菜单Id查询
+     *
      * @param menuIds /
      * @return /
      */

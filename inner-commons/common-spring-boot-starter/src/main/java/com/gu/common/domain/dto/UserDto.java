@@ -23,11 +23,11 @@ public class UserDto extends BaseDto implements Serializable {
 
     private Long id;
 
-    private Set<RoleDto> roles;
+    private Set<RoleSmallDto> roles;
 
-    private Set<JobDto> jobs;
+    private Set<JobSmallDto> jobs;
 
-    private DeptDto dept;
+    private DeptSmallDto dept;
 
     private Long deptId;
 
@@ -50,7 +50,7 @@ public class UserDto extends BaseDto implements Serializable {
 
     private Boolean enabled;
 
-
+    @JsonIgnore
     private Boolean isAdmin = false;
 
     private Date pwdResetTime;

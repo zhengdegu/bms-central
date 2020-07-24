@@ -13,6 +13,12 @@
         <dependency>
             <groupId>com.gu</groupId>
             <artifactId>common-spring-boot-starter</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.baomidou</groupId>
+                    <artifactId>mybatis-plus-boot-starter</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>com.gu</groupId>

@@ -20,7 +20,7 @@ import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenCo
         havingValue = "jwt",
         matchIfMissing = true)
 @Configuration
-public  class JwtTokenStoreConfig {
+public class JwtTokenStoreConfig {
 
     @Autowired
     private SecurityProperties securityProperties;

@@ -28,7 +28,6 @@ import com.gu.common.admin.exception.EntityExistException;
 import com.gu.common.admin.utils.FileUtil;
 import com.gu.common.admin.utils.PageUtil;
 import com.gu.common.admin.utils.ValidationUtil;
-import com.gu.redis.repository.RedisRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;

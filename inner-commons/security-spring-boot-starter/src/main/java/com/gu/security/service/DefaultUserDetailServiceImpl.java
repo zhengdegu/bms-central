@@ -24,12 +24,12 @@ public class DefaultUserDetailServiceImpl implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-        UserDto userDto =new UserDto();
+        UserDto userDto = new UserDto();
         userDto.setUsername("admin");
         userDto.setEnabled(true);
         userDto.setPassword(passwordEncoder.encode("123456"));
 
-        return  new UserDetailsDto(userDto,AuthorityUtils.commaSeparatedStringToAuthorityList("admin"));
+        return new UserDetailsDto(userDto, AuthorityUtils.commaSeparatedStringToAuthorityList("admin"));
         //return new User(username, passwordEncoder.encode("123456"), AuthorityUtils.commaSeparatedStringToAuthorityList("admin"));
     }
 }

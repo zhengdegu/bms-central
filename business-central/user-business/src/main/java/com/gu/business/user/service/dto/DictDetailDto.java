@@ -18,6 +18,7 @@ package com.gu.business.user.service.dto;
 import com.gu.common.admin.base.BaseDTO;
 import lombok.Getter;
 import lombok.Setter;
+
 import java.io.Serializable;
 
 /**

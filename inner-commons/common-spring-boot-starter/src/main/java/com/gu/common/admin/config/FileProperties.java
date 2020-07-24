@@ -17,7 +17,6 @@ package com.gu.common.admin.config;
 
 import com.gu.common.admin.utils.ElAdminConstant;
 import lombok.Data;
-
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 
@@ -29,11 +28,15 @@ import org.springframework.context.annotation.Configuration;
 @ConfigurationProperties(prefix = "file")
 public class FileProperties {
 
-    /** 文件大小限制 */
-    private Long maxSize;
+    /**
+     * 文件大小限制
+     */
+    private Long maxSize = 100l;
 
-    /** 头像大小限制 */
-    private Long avatarMaxSize;
+    /**
+     * 头像大小限制
+     */
+    private Long avatarMaxSize = 5l;
 
     private ElPath mac;
 
@@ -41,21 +44,21 @@ public class FileProperties {
 
     private ElPath windows;
 
-    public ElPath getPath(){
+    public ElPath getPath() {
         String os = System.getProperty("os.name");
-        if(os.toLowerCase().startsWith(ElAdminConstant.WIN)) {
+        if (os.toLowerCase().startsWith(ElAdminConstant.WIN)) {
             return windows;
-        } else if(os.toLowerCase().startsWith(ElAdminConstant.MAC)){
+        } else if (os.toLowerCase().startsWith(ElAdminConstant.MAC)) {
             return mac;
         }
         return linux;
     }
 
     @Data
-    public static class ElPath{
+    public static class ElPath {
 
-        private String path;
+        private String path = "d:";
 
-        private String avatar;
+        private String avatar = "d:";
     }
 }

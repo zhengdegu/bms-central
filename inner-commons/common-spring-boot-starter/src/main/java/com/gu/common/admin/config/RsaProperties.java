@@ -16,7 +16,6 @@
 package com.gu.common.admin.config;
 
 import lombok.Data;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 /**
@@ -29,9 +28,9 @@ import org.springframework.stereotype.Component;
 @Component
 public class RsaProperties {
 
-    public static String privateKey ="gu";
+    public static String privateKey = "gu";
 
-   // @Value("${rsa.private_key}")
+    // @Value("${rsa.private_key}")
     public void setPrivateKey(String privateKey) {
         RsaProperties.privateKey = privateKey;
     }

@@ -7,6 +7,7 @@
  */
 
 package com.gu.common.validator;
+
 import com.gu.common.exception.RRException;
 
 import javax.validation.ConstraintViolation;

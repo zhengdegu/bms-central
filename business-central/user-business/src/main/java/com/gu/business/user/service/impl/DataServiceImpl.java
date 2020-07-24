@@ -23,9 +23,6 @@ import com.gu.business.user.service.dto.RoleSmallDto;
 import com.gu.business.user.service.dto.UserDto;
 import com.gu.common.model.DataScopeEnum;
 import lombok.RequiredArgsConstructor;
-
-import org.springframework.cache.annotation.CacheConfig;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -38,7 +35,6 @@ import java.util.*;
  **/
 @Service
 @RequiredArgsConstructor
-@CacheConfig(cacheNames = "data")
 public class DataServiceImpl implements DataService {
 
     private final RoleService roleService;
@@ -51,7 +47,6 @@ public class DataServiceImpl implements DataService {
      * @return /
      */
     @Override
-    @Cacheable(key = "'user:' + #p0.id")
     public List<Long> getDeptIds(UserDto user) {
         // 用于存储部门id
         Set<Long> deptIds = new HashSet<>();
