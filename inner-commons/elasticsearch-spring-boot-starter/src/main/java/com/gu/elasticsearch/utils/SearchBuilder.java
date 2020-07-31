@@ -2,6 +2,7 @@ package com.gu.elasticsearch.utils;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.gu.common.utils.PageUtil;
 import com.gu.common.utils.R;
 import org.apache.commons.beanutils.PropertyUtils;
 import org.apache.commons.lang3.ArrayUtils;
@@ -100,6 +101,31 @@ public class SearchBuilder {
         return this;
     }
 
+
+    /**
+     * 时间段查询
+     * @param name 时间
+     * @param gte 最小时间
+     * @param lte 最大时间
+     * @param fetchSource  过滤字段
+     * @return this
+     *
+     */
+    public SearchBuilder rangeQuery(String name,Object gte,Object lte,String[] fetchSource){
+        QueryBuilder queryBuilder ;
+        if (StringUtils.isNoneEmpty(name)) {
+            queryBuilder = QueryBuilders.rangeQuery(name).gte(gte).lte(lte);
+        }else {
+            queryBuilder = QueryBuilders.matchAllQuery();
+        }
+        //过滤原字段
+        if (ArrayUtils.isNotEmpty(fetchSource)) {
+            searchBuilder.fetchSource(fetchSource, new String[]{});
+        }
+        searchBuilder.query(queryBuilder);
+        return this;
+    }
+
     /**
      * @param source      源字段
      * @param value       参数
@@ -119,7 +145,6 @@ public class SearchBuilder {
         searchBuilder.query(queryBuilder);
         return this;
     }
-
 
     public SearchBuilder matchQuery(String source, Object value, String[] fetchSource) {
         QueryBuilder queryBuilder;
@@ -237,28 +262,19 @@ public class SearchBuilder {
     }
 
     /**
-     * 返回分页结果 PageResult<JSONObject>
+     * 返回分页结果
      */
-    public R getPage() throws IOException {
+    public List<JSONObject> getPage() throws IOException {
         return this.getPage(null, null);
     }
 
-    /**
-     * 返回分页结果 PageResult<JSONObject>
-     *
-     * @param page  当前页数
-     * @param limit 每页显示
-     */
-    public R getPage(Integer page, Integer limit) throws IOException {
+    public List<JSONObject> getPage(Integer page, Integer limit) throws IOException {
         this.setPage(page, limit);
         SearchResponse response = this.get();
         SearchHits searchHits = response.getHits();
-        long totalCount = searchHits.getTotalHits().value;
+       //long totalCount = searchHits.getTotalHits().value;
         List<JSONObject> list = getList(searchHits);
-        Map<String, Object> map = new HashMap<>(2);
-        map.put("count", totalCount);
-        map.put("data", list);
-        return R.ok(map);
+        return  PageUtil.toPage(page,limit,list);
     }
 
     /**
@@ -270,7 +286,6 @@ public class SearchBuilder {
             searchHits.forEach(item -> {
                 JSONObject jsonObject = JSON.parseObject(item.getSourceAsString());
                 jsonObject.put("id", item.getId());
-
                 Map<String, HighlightField> highlightFields = item.getHighlightFields();
                 if (highlightFields != null) {
                     populateHighLightedFields(jsonObject, highlightFields);

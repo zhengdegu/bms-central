@@ -17,10 +17,39 @@ spring:
           filters:
           #  - StripPrefix=1
           # - PreserveHostHeader
-         - id: uua-business
-           uri: lb://uua-business
-           predicates:
-             - Path=/api/oauth/*
+        - id: auth
+          uri: lb://uua-business
+          predicates:
+            - Path=/auth/*
+          filters:
+            - PreserveHostHeader
+        - id: code
+          uri: lb://uua-business
+          predicates:
+            - Path=/api/code/**
+          filters:
+           # - PreserveHostHeader
+        - id: users
+          uri: lb://uua-business
+          predicates:
+            - Path=/api/users/**
+        - id: roles
+          uri: lb://uua-business
+          predicates:
+            - Path=/api/roles/**
+        - id: menus
+          uri: lb://uua-business
+          predicates:
+            - Path=/api/menus/**
+        - id: job
+          uri: lb://uua-business
+          predicates:
+            - Path=/api/job/**
+        - id: dept
+          uri: lb://uua-business
+          predicates:
+            - Path=/api/dept/**
     nacos:
       discovery:
         server-addr: 10.1.2.4:8848
+        namespace: cc293ef6-11c5-4268-b550-7dc562f3e70b

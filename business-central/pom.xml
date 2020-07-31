@@ -12,10 +12,9 @@
     <artifactId>business-central</artifactId>
     <packaging>pom</packaging>
     <modules>
-        <module>user-business</module>
-        <module>uua-business</module>
-        <module>sys-business</module>
         <module>gateway-business</module>
+        <module>sys-business</module>
+        <module>search-business</module>
     </modules>
 
 

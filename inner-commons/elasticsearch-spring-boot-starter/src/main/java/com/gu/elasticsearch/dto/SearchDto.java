@@ -21,6 +21,11 @@ public class SearchDto implements Serializable {
      * 搜索关键字
      */
     private String queryStr;
+
+    /**
+     * 过滤原字段
+     */
+    private String[] fetchSource;
     /**
      * 当前页数
      */

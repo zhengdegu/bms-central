@@ -4,9 +4,11 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.gu.common.domain.dto.UserDto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import javax.jws.soap.SOAPBinding;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;

@@ -29,7 +29,7 @@ public class DefaultUserDetailServiceImpl implements UserDetailsService {
         userDto.setEnabled(true);
         userDto.setPassword(passwordEncoder.encode("123456"));
 
-        return new UserDetailsDto(userDto, AuthorityUtils.commaSeparatedStringToAuthorityList("admin"));
+        return new UserDetailsDto(userDto, null,AuthorityUtils.commaSeparatedStringToAuthorityList("admin"));
         //return new User(username, passwordEncoder.encode("123456"), AuthorityUtils.commaSeparatedStringToAuthorityList("admin"));
     }
 }
