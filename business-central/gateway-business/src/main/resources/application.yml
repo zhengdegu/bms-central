@@ -17,6 +17,7 @@ spring:
           filters:
           #  - StripPrefix=1
           # - PreserveHostHeader
+      ## 登录  在线用户
         - id: auth
           uri: lb://uua-business
           predicates:
@@ -49,6 +50,14 @@ spring:
           uri: lb://uua-business
           predicates:
             - Path=/api/dept/**
+        - id: dict
+          uri: lb://uua-business
+          predicates:
+            - Path=/api/dictDetail/**
+        - id: logs
+          uri: lb://uua-business
+          predicates:
+            - Path=/api/logs/**
     nacos:
       discovery:
         server-addr: 10.1.2.4:8848

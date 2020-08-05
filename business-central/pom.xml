@@ -15,7 +15,6 @@
         <module>gateway-business</module>
         <module>sys-business</module>
         <module>search-business</module>
+        <module>iot-business</module>
     </modules>
-
-
 </project>

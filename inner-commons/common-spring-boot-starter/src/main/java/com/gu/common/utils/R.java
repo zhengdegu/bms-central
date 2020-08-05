@@ -14,27 +14,27 @@ public class R extends HashMap<String, Object> {
     private static final long serialVersionUID = 1L;
 
     public R() {
-        put("code", 200);
+        put("status", 200);
     }
 
     public static R error() {
         return error(500, "未知异常，请联系管理员");
     }
 
-    public static R error(String msg) {
-        return error(500, msg);
+    public static R error(String message) {
+        return error(500, message);
     }
 
-    public static R error(int code, String msg) {
+    public static R error(int status, String message) {
         R r = new R();
-        r.put("code", code);
-        r.put("msg", msg);
+        r.put("status", status);
+        r.put("message", message);
         return r;
     }
 
-    public static R ok(String msg) {
+    public static R ok(String message) {
         R r = new R();
-        r.put("msg", msg);
+        r.put("message", message);
         return r;
     }
 

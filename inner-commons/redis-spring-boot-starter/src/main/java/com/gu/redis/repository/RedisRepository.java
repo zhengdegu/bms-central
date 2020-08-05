@@ -17,6 +17,7 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * redis工具类
+ * @author g130016
  */
 @Slf4j
 public class RedisRepository {

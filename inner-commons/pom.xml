@@ -17,6 +17,8 @@
         <module>uua-spring-boot-starter</module>
         <module>security-spring-boot-starter</module>
         <module>config-spring-boot-starter</module>
+        <module>log-spring-boot-starter</module>
+        <module>network-spring-boot-starter</module>
     </modules>
 
 </project>

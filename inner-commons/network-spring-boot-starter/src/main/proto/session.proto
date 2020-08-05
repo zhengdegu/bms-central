@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package com.gu.network;
+
+option java_outer_classname = "DistributedSession";
+option java_package = "com.gu.network.session";
+
+/**
+ * 分布式Session的相关信息
+ */
+message Session {
+    string drcId = 1;
+    string localIp = 2;
+    int32 localPort = 3;
+    string remoteIp = 5;
+    int32 remotePort = 6;
+    int64 conTimestamp = 7;
+}
