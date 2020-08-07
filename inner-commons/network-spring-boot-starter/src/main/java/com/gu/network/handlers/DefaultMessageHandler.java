@@ -18,7 +18,7 @@ public class DefaultMessageHandler extends MessageHandler {
     }
 
     @Override
-    protected void doChannelInactiv(ChannelHandlerContext ctx) throws Exception {
+    protected void doChannelInactive(ChannelHandlerContext ctx) throws Exception {
         log.info("You should extends com.gu.network.handlers.MessageHandler and override doChannelInactivo method to add the active channel:{}", ctx);
     }
 

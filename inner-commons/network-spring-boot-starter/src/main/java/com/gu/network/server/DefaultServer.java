@@ -30,21 +30,21 @@ import java.util.concurrent.atomic.AtomicBoolean;
 public class DefaultServer implements Server {
 
 
-    private ServerProperties serverProperties;
+    private final ServerProperties serverProperties;
 
-    private ServerChannelInitializer serverChannelInitializer;
+    private final ServerChannelInitializer serverChannelInitializer;
 
-    private Integer port;
+    private final Integer port;
 
     /**
      * the server attribute
      */
-    private ServerAttr serverAttr;
+    private final ServerAttr serverAttr;
 
     private EventLoopGroup masterEventLoopGroup;
     private EventLoopGroup childrenEventLoopGroup;
 
-    private AtomicBoolean started = new AtomicBoolean(false);
+    private final AtomicBoolean started = new AtomicBoolean(false);
 
     public DefaultServer(ServerProperties serverProperties, ServerChannelInitializer serverChannelInitializer) {
         this.serverProperties = serverProperties;
@@ -109,28 +109,28 @@ public class DefaultServer implements Server {
         ServerProperties.SocketOptions options = serverProperties.getSocketOptions();
 
         // backlog
-        if (options.getSO_BACKLOG().isPresent()) {
-            serverBootstrap.option(ChannelOption.SO_BACKLOG, options.getSO_BACKLOG().get());
+        if (options.getSoBacklog().isPresent()) {
+            serverBootstrap.option(ChannelOption.SO_BACKLOG, options.getSoBacklog().get());
         }
 
-        if (options.getALLOW_HALF_CLOSURE().isPresent()) {
-            serverBootstrap.childOption(ChannelOption.ALLOW_HALF_CLOSURE, options.getALLOW_HALF_CLOSURE().get());
+        if (options.getAllowHalfClosure().isPresent()) {
+            serverBootstrap.childOption(ChannelOption.ALLOW_HALF_CLOSURE, options.getAllowHalfClosure().get());
         }
 
-        if (options.getSO_SNDBUF().isPresent()) {
-            serverBootstrap.childOption(ChannelOption.SO_SNDBUF, options.getSO_SNDBUF().get());
+        if (options.getSoSendBuf().isPresent()) {
+            serverBootstrap.childOption(ChannelOption.SO_SNDBUF, options.getSoSendBuf().get());
         }
 
-        if (options.getSO_RCVBUF().isPresent()) {
-            serverBootstrap.childOption(ChannelOption.SO_RCVBUF, options.getSO_RCVBUF().get());
+        if (options.getSoReceiveBuf().isPresent()) {
+            serverBootstrap.childOption(ChannelOption.SO_RCVBUF, options.getSoReceiveBuf().get());
         }
 
-        if (options.getSO_KEEPALIVE().isPresent()) {
-            serverBootstrap.childOption(ChannelOption.SO_KEEPALIVE, options.getSO_KEEPALIVE().get());
+        if (options.getSoKeepAlive().isPresent()) {
+            serverBootstrap.childOption(ChannelOption.SO_KEEPALIVE, options.getSoKeepAlive().get());
         }
 
-        if (options.getTCP_NODELAY().isPresent()) {
-            serverBootstrap.childOption(ChannelOption.TCP_NODELAY, options.getTCP_NODELAY().get());
+        if (options.getNoDelay().isPresent()) {
+            serverBootstrap.childOption(ChannelOption.TCP_NODELAY, options.getNoDelay().get());
         }
         serverBootstrap.group(masterEventLoopGroup, childrenEventLoopGroup)
                 .channel(channelClass)

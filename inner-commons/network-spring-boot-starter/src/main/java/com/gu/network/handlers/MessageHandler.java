@@ -17,7 +17,7 @@ public abstract class MessageHandler extends SimpleChannelInboundHandler<com.gu.
 
     @Override
     public void channelInactive(ChannelHandlerContext ctx) throws Exception {
-        this.doChannelInactiv(ctx);
+        this.doChannelInactive(ctx);
         ctx.fireChannelInactive();
     }
 
@@ -45,9 +45,18 @@ public abstract class MessageHandler extends SimpleChannelInboundHandler<com.gu.
      */
     protected abstract void doChannelRead0(ChannelHandlerContext channelHandlerContext, Message.ReceivedMessage defaultPacketMessage) throws Exception;
 
+    /**
+     * 关闭连接操作
+     * @param ctx 通道
+     * @throws Exception
+     */
+    protected abstract void doChannelInactive(ChannelHandlerContext ctx) throws Exception;
 
-    protected abstract void doChannelInactiv(ChannelHandlerContext ctx) throws Exception;
-
-
+    /**
+     * 异常操作
+     * @param ctx 通道
+     * @param cause 异常
+     * @throws Exception
+     */
     protected abstract void doExceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception;
 }

@@ -61,32 +61,32 @@ public class ServerProperties {
         /**
          * 是否允许half connection
          */
-        private Optional<Boolean> ALLOW_HALF_CLOSURE = Optional.of(false);
+        private Optional<Boolean>  allowHalfClosure = Optional.of(false);
 
         /**
          * 设置backlog的大小
          */
-        private Optional<Integer> SO_BACKLOG = Optional.of(1024);
+        private Optional<Integer>  soBacklog = Optional.of(1024);
 
         /**
          * 设置发送缓存大小
          */
-        private Optional<Integer> SO_SNDBUF = Optional.of(1024);
+        private Optional<Integer>   soSendBuf= Optional.of(1024);
 
         /**
          * 设置接收缓存大小
          */
-        private Optional<Integer> SO_RCVBUF = Optional.of(1024);
+        private Optional<Integer> soReceiveBuf = Optional.of(1024);
 
         /**
          * 是否采用KeepAlive，默认情况下不需要启用KeepAlive参数，一般在应用层使用心跳包保持连接，这样灵活性更高
          */
-        private Optional<Boolean> SO_KEEPALIVE = Optional.of(false);
+        private Optional<Boolean> soKeepAlive = Optional.of(false);
 
         /**
          * 是否关闭TCP的Nagle算法，拖拉机下发消息时延不敏感，可以考虑启用Nagle算法
          */
-        private Optional<Boolean> TCP_NODELAY = Optional.of(false);
+        private Optional<Boolean>  noDelay = Optional.of(false);
     }
 
 }
