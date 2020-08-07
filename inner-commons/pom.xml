@@ -19,6 +19,7 @@
         <module>config-spring-boot-starter</module>
         <module>log-spring-boot-starter</module>
         <module>network-spring-boot-starter</module>
+        <module>feign-spring-boot-starter</module>
     </modules>
 
 </project>

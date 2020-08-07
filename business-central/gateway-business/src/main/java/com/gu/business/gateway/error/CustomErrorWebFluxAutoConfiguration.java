@@ -30,6 +30,7 @@ import java.util.Map;
 
 /**
  * 自定义异常处理
+ * @author g130016
  */
 @Configuration
 @ConditionalOnWebApplication(type = ConditionalOnWebApplication.Type.REACTIVE)
@@ -73,7 +74,7 @@ public class CustomErrorWebFluxAutoConfiguration {
         return exceptionHandler;
     }
 
-    public class JsonErrorWebExceptionHandler extends DefaultErrorWebExceptionHandler {
+    public static class JsonErrorWebExceptionHandler extends DefaultErrorWebExceptionHandler {
         public JsonErrorWebExceptionHandler(ErrorAttributes errorAttributes, ResourceProperties resourceProperties,
                                             ErrorProperties errorProperties, ApplicationContext applicationContext) {
             super(errorAttributes, resourceProperties, errorProperties, applicationContext);

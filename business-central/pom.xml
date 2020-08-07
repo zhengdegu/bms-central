@@ -16,5 +16,6 @@
         <module>sys-business</module>
         <module>search-business</module>
         <module>iot-business</module>
+        <module>log-business</module>
     </modules>
 </project>

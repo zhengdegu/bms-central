@@ -30,7 +30,7 @@ public abstract class ServerChannelInitializer extends ChannelInitializer<Socket
     private MessageEncoder messageEncoder;
 
     @Autowired
-    private LoginAuthReqHandler loginAuthReqHandler;
+    private AuthReqHandler loginAuthReqHandler;
 
     @Autowired
     private MessageHandler messageHandler;

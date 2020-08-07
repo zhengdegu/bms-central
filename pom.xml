@@ -127,6 +127,16 @@
                 <artifactId>network-spring-boot-starter</artifactId>
                 <version>${project.version}</version>
             </dependency>
+            <dependency>
+                <groupId>com.gu</groupId>
+                <artifactId>log-spring-boot-starter</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.gu</groupId>
+                <artifactId>feign-spring-boot-starter</artifactId>
+                <version>${project.version}</version>
+            </dependency>
             <!-- Mysql Driver -->
             <dependency>
                 <groupId>mysql</groupId>

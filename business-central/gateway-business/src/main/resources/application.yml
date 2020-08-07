@@ -55,7 +55,7 @@ spring:
           predicates:
             - Path=/api/dictDetail/**
         - id: logs
-          uri: lb://uua-business
+          uri: lb://log-business
           predicates:
             - Path=/api/logs/**
     nacos:

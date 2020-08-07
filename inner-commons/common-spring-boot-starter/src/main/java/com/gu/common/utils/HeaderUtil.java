@@ -1,10 +1,15 @@
 package com.gu.common.utils;
 
+import com.gu.common.constat.CommonConstants;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.oauth2.common.OAuth2AccessToken;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServletRequest;
+import java.net.StandardSocketOptions;
 import java.util.Enumeration;
+import java.util.Objects;
 
 /**
  * @author FastG
@@ -13,6 +18,11 @@ import java.util.Enumeration;
 @Slf4j
 public class HeaderUtil {
 
+
+    public static String extractUser(){
+        HttpServletRequest request = ((ServletRequestAttributes) Objects.requireNonNull(RequestContextHolder.getRequestAttributes())).getRequest();
+        return request.getHeader(CommonConstants.USER_HEADER);
+    }
     /**
      * 获取requet(head/param)中的token
      *
