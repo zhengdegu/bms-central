@@ -28,8 +28,7 @@ public class ValidateCodeController {
      * @throws Exception
      */
     @GetMapping(SecurityConstants.DEFAULT_VALIDATE_CODE_URL)
-    public R createCode()
-            throws Exception {
+    public R createCode() throws Exception {
         // 获取运算的结果
         Captcha captcha = securityProperties.getValidateCode().getCaptcha();
         String uuid = IdUtil.simpleUUID();

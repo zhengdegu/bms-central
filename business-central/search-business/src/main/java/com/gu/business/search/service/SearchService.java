@@ -1,10 +1,8 @@
 package com.gu.business.search.service;
 
-import com.alibaba.fastjson.JSONObject;
-import com.gu.elasticsearch.dto.SearchDto;
 
-import java.io.IOException;
-import java.util.List;
+import com.gu.business.search.service.dto.ServerLogQueryCriteria;
+import org.springframework.data.domain.Pageable;
 
 /**
  * search
@@ -14,15 +12,11 @@ import java.util.List;
  */
 public interface SearchService {
 
-
     /**
-     * 通用搜索 适合模糊查询
-     *
-     * @param indexName
-     * @param searchDto
+     * 查询服务log
+     * @param serverLogQueryCriteria
+     * @param pageable
      * @return
-     * @throws IOException
      */
-    List<JSONObject> strQuery(String indexName, SearchDto searchDto) throws IOException;
-
+    Object queryAll(ServerLogQueryCriteria serverLogQueryCriteria, Pageable pageable);
 }

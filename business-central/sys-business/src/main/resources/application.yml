@@ -54,3 +54,7 @@ spring:
         wall:
           config:
             multi-statement-allow: true
+  redis:
+    host: 39.104.146.109
+    port: 6379
+    password: sylincom

@@ -24,8 +24,6 @@ import java.io.IOException;
 @Component
 public class DefaultAuthenticationSuccessHandler extends SavedRequestAwareAuthenticationSuccessHandler {
 
-    private Logger logger = LoggerFactory.getLogger(getClass());
-
     @Autowired
     private ObjectMapper objectMapper;
 
@@ -80,7 +78,7 @@ public class DefaultAuthenticationSuccessHandler extends SavedRequestAwareAuthen
 
         OAuth2AccessToken token = authorizationServerTokenServices.createAccessToken(oAuth2Authentication);
 
-
+        //返回token信息与用户信息
         response.setContentType("application/json;charset=UTF-8");
         response.getWriter().write(objectMapper.writeValueAsString(token));
 
