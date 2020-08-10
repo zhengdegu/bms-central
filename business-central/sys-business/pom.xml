@@ -10,6 +10,10 @@
     <modelVersion>4.0.0</modelVersion>
     <artifactId>sys-business</artifactId>
     <dependencies>
+        <dependency>
+            <groupId>com.gu</groupId>
+            <artifactId>security-spring-boot-starter</artifactId>
+        </dependency>
         <!--Spring boot 核心-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -75,11 +79,6 @@
             <groupId>com.alibaba</groupId>
             <artifactId>druid-spring-boot-starter</artifactId>
             <version>1.1.22</version>
-        </dependency>
-        <dependency>
-            <groupId>org.lionsoul</groupId>
-            <artifactId>ip2region</artifactId>
-            <version>1.7.2</version>
         </dependency>
         <!-- excel工具 -->
         <dependency>

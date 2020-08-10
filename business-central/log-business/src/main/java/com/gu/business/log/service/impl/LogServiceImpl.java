@@ -99,49 +99,9 @@ public class LogServiceImpl implements LogService {
         logRepository.save(log);
     }
 
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public void save(Log logVo) {
-//        MethodSignature signature = (MethodSignature) logVo.getPoint().getSignature();
-//        Method method = signature.getMethod();
-//        com.gu.log.annotation.Log aopLog = method.getAnnotation(com.gu.log.annotation.Log.class);
-//
-//        // 方法路径
-//        String methodName = logVo.getPoint().getTarget().getClass().getName() + "." + signature.getName() + "()";
-//
-//        StringBuilder params = new StringBuilder("{");
-//        //参数值
-//        List<Object> argValues = new ArrayList<>(Arrays.asList(logVo.getPoint().getArgs()));
-//        //参数名称
-//        for (Object argValue : argValues) {
-//            params.append(argValue).append(" ");
-//        }
-//
-//        Log log = new Log();
-//
-//        // 描述
-//        if (StringUtils.isNotBlank(logVo.getLogType())) {
-//            log.setDescription(aopLog.value());
-//        }
-//        assert log != null;
-//        log.setRequestIp(logVo.getRequestIp());
-//
-//        String loginPath = "login";
-//        String username = log.getUsername();
-//        if (loginPath.equals(signature.getName())) {
-//            try {
-//                username = new JSONObject(argValues.get(0)).get("username").toString();
-//            } catch (Exception e) {
-//                LogServiceImpl.log.error(e.getMessage(), e);
-//            }
-//        }
-//        log.setAddress(StringUtils.getCityInfo(log.getRequestIp()));
-//        log.setMethod(methodName);
-//        log.setUsername(username);
-//        log.setParams(params.toString() + " }");
-//        log.setBrowser(logVo.getBrowser());
-//        if (logVo.getExceptionDetail() != null && logVo.getExceptionDetail().length != 0) {
-//            log.setExceptionDetail(log.getExceptionDetail());
-//        }
         logRepository.save(logVo);
     }
 

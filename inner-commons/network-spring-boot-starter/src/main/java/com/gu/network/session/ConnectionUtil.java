@@ -2,6 +2,9 @@ package com.gu.network.session;
 
 import io.netty.channel.Channel;
 
+/**
+ * @author g130016
+ */
 public class ConnectionUtil {
 
     private ConnectionUtil() {

@@ -60,23 +60,15 @@ public class DefaultMessageDecoder extends MessageDecoder<Message.ReceivedMessag
                 int readerIndex = byteBuf.readerIndex();
 
                 ByteBuf frame = this.extractFrame(byteBuf, readerIndex, frameLengthInt);
-                long drc;
-                byte version;
-                int messageLength;
-                byte[] receivedMsg;
+                byte[] receivedMsg = new  byte[frame.readableBytes()];
                 try {
-                    drc = frame.readLong();
-                    version = (byte) frame.readUnsignedByte();
-                    messageLength = frame.readUnsignedShort();
-                    receivedMsg = new byte[messageLength];
-                    frame.readBytes(receivedMsg);
+                   frame.readBytes(receivedMsg);
                 } finally {
                     frame.release();
                 }
                 byteBuf.readerIndex(readerIndex + frameLengthInt);
-                return com.gu.network.message.Message.ReceivedMessage.newBuilder().setDrcId(String.valueOf(drc))
-                        .setVersion(String.valueOf(version))
-                        .setPayloads(ByteString.copyFrom(receivedMsg));
+                return com.gu.network.message.Message.ReceivedMessage.newBuilder()
+                        .setMessage(ByteString.copyFrom(receivedMsg));
             }
         }
     }

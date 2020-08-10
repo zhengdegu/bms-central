@@ -23,7 +23,7 @@ public interface LogService {
     /**
      * 保存日志接口
      *
-     * @return
+     * @return re
      */
     @PostMapping("/api/logs/save")
     ResponseEntity<Object> saveLog(@RequestBody LogVo log);

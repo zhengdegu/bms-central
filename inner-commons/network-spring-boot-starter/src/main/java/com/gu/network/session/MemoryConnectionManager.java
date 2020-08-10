@@ -94,12 +94,10 @@ public class MemoryConnectionManager implements ConnectionManager {
 
     @Override
     public List<ConnectionUser> onlineUser() {
-        Set<ConnectionUser> noRepeatUsers = CONNECTION_HASH_MAP.values().stream()
+        return CONNECTION_HASH_MAP.values().stream()
                 .map(connection -> {
                     return ConnectionUser.builder().drcId(connection.getDrcId()).channel(connection.getChannel()).build();
-                })
-                .collect(Collectors.toSet());
-        return new ArrayList<ConnectionUser>(noRepeatUsers);
+                }).distinct().collect(Collectors.toList());
     }
 
 
@@ -118,7 +116,7 @@ public class MemoryConnectionManager implements ConnectionManager {
             //noinspection unchecked
             connection.getChannel().writeAndFlush(memessage).addListeners(future -> {
                 if (future.isSuccess()) {
-                    log.info("send message to drcId:{} succeessed !", drcId);
+                    log.info("send message to drcId:{} successed !", drcId);
                 }
                 //考虑重试次数
             });

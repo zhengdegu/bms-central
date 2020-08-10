@@ -8,8 +8,6 @@ option java_package = "com.gu.network.message";
  * 上行消息定义
  */
 message ReceivedMessage {
-    string drcId = 1;
-    string version = 2;
-    bytes payloads =3;
+    bytes message =3;
 
 }
