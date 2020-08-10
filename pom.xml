@@ -23,7 +23,7 @@
         <spring-cloud-dependencies.version>Hoxton.SR6</spring-cloud-dependencies.version>
         <commons-collections4.version>4.4</commons-collections4.version>
         <fastjson.version>1.2.70</fastjson.version>
-        <mysql.version>5.1.44</mysql.version>
+        <mysql.version>8.0.16</mysql.version>
         <swagger.version>2.9.2</swagger.version>
         <swagger.ui.version>1.8.7</swagger.ui.version>
         <swagger.mg.ui.version>1.0.6</swagger.mg.ui.version>
