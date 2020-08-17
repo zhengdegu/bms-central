@@ -21,4 +21,20 @@
 &nbsp;
 ## 4. 模块说明
 ```lua
+```lua
+bms-central-- 父项目，公共依赖
+│  ├─business-central -- 业务模块一级工程
+│  │  ├─gateway-business -- 网关中心[7000]
+│  │  ├─iot-business -- 物联网连接中心[5000]
+│  │  ├─log-business -- 日志中心[7300]
+│  │  ├─search-business -- 搜索中心[]
+│  │─inner-commons -- 通用工具一级工程
+│  │  ├─security-spring-boot-starter -- 封装spring security client端的通用操作逻辑
+│  │  ├─common-spring-boot-starter -- 封装通用操作逻辑
+│  │  ├─log-spring-boot-starter -- 封装log通用操作逻辑
+│  │  ├─redis-spring-boot-starter -- 封装Redis通用操作逻辑
+│  │  ├─fegin-spring-boot-starter -- 封装Feign通用操作逻辑
+│  │  ├─network-spring-boot-starter -- 封装Netty通用操作逻辑
+│  │  ├─elasticsearch-spring-boot-starter -- 封装elasticsearch通用操作逻辑
+
 ```
