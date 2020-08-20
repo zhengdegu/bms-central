@@ -33,6 +33,11 @@ spring:
         # 修改网页的brand的图标和标题
         brand: "<img src='assets/img/icon-spring-boot-admin.svg'><span>应用监控管理</span>"
       notify:
+        mail:
+          from: grafanap@163.com              #邮件发送方账户
+          to: guzhende@ict.ac.cn               #接受邮件的账户
+          enabled: false
+          ignore-changes:
         server:
-          enabled: true
+          enabled: false
           webhook-token: https://sc.ftqq.com/SCU69682T9a9f3838b4ecfb0cdad9694bb2837e865dfb119005ced.send?
