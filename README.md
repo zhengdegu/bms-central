@@ -29,7 +29,7 @@ bms-central-- 父项目，公共依赖
 │  │  ├─log-business -- 日志中心[7300]
 │  │  ├─search-business -- 搜索中心[]
 │  │─inner-commons -- 通用工具一级工程
-│  │  ├─security-spring-boot-starter -- 封装spring security client端的通用操作逻辑
+│  │  ├─security-spring-boot-starter -- 封装spring security通用操作逻辑
 │  │  ├─common-spring-boot-starter -- 封装通用操作逻辑
 │  │  ├─log-spring-boot-starter -- 封装log通用操作逻辑
 │  │  ├─redis-spring-boot-starter -- 封装Redis通用操作逻辑

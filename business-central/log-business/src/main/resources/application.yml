@@ -15,9 +15,9 @@ spring:
     druid:
       db-type: com.alibaba.druid.pool.DruidDataSource
       driver-class-name: com.mysql.jdbc.Driver
-      url: jdbc:mysql://123.7.182.34:20008/eladmin?serverTimezone=Asia/Shanghai&characterEncoding=utf8&useSSL=false
-      username: yanxuzhe
-      password: yanxuzhe
+      url: jdbc:mysql://10.1.2.4:3306/eladmin?serverTimezone=Asia/Shanghai&characterEncoding=utf8&useSSL=false
+      username: hb-mysql
+      password: sylincom@123
       # 初始连接数
       initial-size: 5
       # 最小连接数

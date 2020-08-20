@@ -8,6 +8,7 @@
     <modules>
         <module>inner-commons</module>
         <module>business-central</module>
+        <module>inner-commons/sentinel-spring-boot-starter</module>
     </modules>
     <packaging>pom</packaging>
     <name>bms-central</name>
@@ -134,6 +135,11 @@
             <dependency>
                 <groupId>com.gu</groupId>
                 <artifactId>feign-spring-boot-starter</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.gu</groupId>
+                <artifactId>sentinel-spring-boot-starter</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <!-- Mysql Driver -->
