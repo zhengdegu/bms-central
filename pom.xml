@@ -9,6 +9,7 @@
         <module>inner-commons</module>
         <module>business-central</module>
         <module>inner-commons/sentinel-spring-boot-starter</module>
+        <module>monitor-central</module>
     </modules>
     <packaging>pom</packaging>
     <name>bms-central</name>

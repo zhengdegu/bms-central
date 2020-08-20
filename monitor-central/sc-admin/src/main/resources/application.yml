@@ -1,0 +1,38 @@
+server:
+  port: 10100
+spring:
+  application:
+    name: sc-admin
+  jackson:
+     time-zone: GMT+8
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 10.1.2.4:8848
+        namespace: cc293ef6-11c5-4268-b550-7dc562f3e70b
+  security:
+    user:
+      name: 'admin'
+      password: 'admin'
+  ###################
+  # 邮件通知配置
+  ##################
+  mail:
+    host: smtp.163.com
+    username: grafanap@163.com
+    password: grafanap123
+
+    ###################
+    # admin配置
+  ##################
+  boot:
+    admin:
+      ui:
+        # 修改网页显示的tab标题
+        title: "应用监控管理"
+        # 修改网页的brand的图标和标题
+        brand: "<img src='assets/img/icon-spring-boot-admin.svg'><span>应用监控管理</span>"
+      notify:
+        server:
+          enabled: true
+          webhook-token: https://sc.ftqq.com/SCU69682T9a9f3838b4ecfb0cdad9694bb2837e865dfb119005ced.send?
