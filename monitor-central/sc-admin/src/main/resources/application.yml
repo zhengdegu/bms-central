@@ -39,5 +39,5 @@ spring:
           enabled: false
           ignore-changes:
         server:
-          enabled: false
-          webhook-token: https://sc.ftqq.com/SCU69682T9a9f3838b4ecfb0cdad9694bb2837e865dfb119005ced.send?
+          enabled: true
+          url: https://sc.ftqq.com/SCU69682T9a9f3838b4ecfb0cdad9694bb2837e865dfb119005ced.send?

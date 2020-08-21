@@ -10,6 +10,7 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.client.RestTemplate;
 
 /**
  * @author FastG
@@ -20,9 +21,12 @@ import org.springframework.context.annotation.Configuration;
 @AutoConfigureBefore({AdminServerHazelcastAutoConfiguration.NotifierTriggerConfiguration.class,
         AdminServerNotifierAutoConfiguration.CompositeNotifierConfiguration.class})
 public class NotifierConfiguration {
+
     @Bean
     @ConditionalOnMissingBean
     public SelfNotifier selfNotifier(InstanceRepository repository, SelfNotifierProperties selfNotifierProperties) {
-        return new SelfNotifier(repository, selfNotifierProperties);
+        RestTemplate restTemplate = new RestTemplate();
+        return new SelfNotifier(repository, restTemplate, selfNotifierProperties);
     }
+
 }

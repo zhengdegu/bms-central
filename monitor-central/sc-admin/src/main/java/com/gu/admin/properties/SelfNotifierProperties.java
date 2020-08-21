@@ -11,5 +11,5 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @ConfigurationProperties(prefix = "spring.boot.admin.notify.server")
 public class SelfNotifierProperties {
     private boolean enabled = false;
-    private String webHookToken;
+    private String url;
 }

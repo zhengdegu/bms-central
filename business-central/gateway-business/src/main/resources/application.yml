@@ -62,3 +62,12 @@ spring:
       discovery:
         server-addr: 10.1.2.4:8848
         namespace: cc293ef6-11c5-4268-b550-7dc562f3e70b
+# 在默认情况下大多数Actuator的端点并没有完全公开，这里我将所有端点都进行公开进行管理
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
