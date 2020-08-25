@@ -1,18 +1,13 @@
 package com.gu.business.search.service.impl;
 
-import com.alibaba.fastjson.JSONObject;
 import com.gu.business.search.service.SearchService;
 import com.gu.business.search.service.dto.ServerLogQueryCriteria;
-import com.gu.elasticsearch.dto.SearchDto;
-import com.gu.elasticsearch.utils.SearchBuilder;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.elasticsearch.search.sort.SortOrder;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.elasticsearch.core.ElasticsearchRestTemplate;
 import org.springframework.stereotype.Service;
 
-import java.io.IOException;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -20,7 +15,7 @@ import java.util.List;
 
 /**
  * @author FastG
- * @date 2020/7/30 15:39
+ * @date 2020/8/24 15:39
  */
 @Slf4j
 @Service
@@ -38,7 +33,7 @@ public class SearchServiceImpl implements SearchService {
         try {
             List<Field> fields = getAllFields(serverLogQueryCriteria.getClass(), new ArrayList<>());
             fields.forEach(field -> {
-
+                //TODO 实现es查询
             });
         }catch (Exception e){
             log.error(e.getMessage(), e);

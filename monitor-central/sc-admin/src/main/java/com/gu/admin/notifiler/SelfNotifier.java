@@ -36,7 +36,6 @@ public class SelfNotifier extends AbstractStatusChangeNotifier {
     private final RestTemplate restTemplate;
     private final SelfNotifierProperties selfNotifierProperties;
     private final Expression description;
-
     public SelfNotifier(InstanceRepository repository, RestTemplate restTemplate, SelfNotifierProperties selfNotifierProperties) {
         super(repository);
         this.restTemplate = restTemplate;
@@ -58,10 +57,10 @@ public class SelfNotifier extends AbstractStatusChangeNotifier {
 
     protected HttpEntity<Map<String, Object>> createNotification(InstanceEvent event, Instance instance) {
         Map<String, Object> body = new HashMap();
-        body.put("color", this.getColor(event));
+        //body.put("color", this.getColor(event));
         body.put("text","服务告警");
         body.put("desp", this.getMessage(event, instance));
-        body.put("message_format", "html");
+        //body.put("message_format", "html");
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         return new HttpEntity(body, headers);
