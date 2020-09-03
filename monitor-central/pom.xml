@@ -12,6 +12,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>sc-admin</module>
+        <module>zipkin-server</module>
     </modules>
 
 </project>

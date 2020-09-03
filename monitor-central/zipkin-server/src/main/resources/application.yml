@@ -1,0 +1,53 @@
+server:
+  port: 9411
+spring:
+  application:
+    name: es-server
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    url: jdbc:mysql://10.171.7.104:3306/zipkin?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&useSSL=false&zeroDateTimeBehavior=convertToNull
+    username: root
+    password: 123456
+    driver-class-name:  com.mysql.jdbc.Driver
+    hikari:
+      max-lifetime: 1800000
+      maximum-pool-size: 20  #根据cpu 核数配置
+      minimum-idle: 10
+      login-timeout: 5
+      idle-timeout: 600000
+      validation-timeout: 5001
+      connection-timeout: 30000
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: ALWAYS
+
+
+  metrics:
+    web:
+      server:
+        auto-time-requests: false
+zipkin:
+  storage:
+    type: mem
+    elasticsearch:
+      hosts: http://10.171.7.104:9200
+      #      username: elastic
+      #      password: changeme
+      cluster: elasticsearch
+      index: zipkin
+      index-shards: 1
+      index-replicas: 0
+  collector:
+    kafka:
+      bootstrap-servers: 10.171.7.104:9092
+      zookeeper: 10.171.7.104:2181
+      topic: zipkin
+
+logging:
+  level:
+    root: info
